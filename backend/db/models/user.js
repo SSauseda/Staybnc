@@ -35,9 +35,9 @@ module.exports = (sequelize, DataTypes) => {
       const user = await User.create({
         username,
         email,
-        hashedPassword,
         firstName, 
-        lastName
+        lastName,
+        hashedPassword
       });
       return await User.scope('currentUser').findByPk(user.id);
     }
@@ -73,7 +73,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           len: [1, 50]
-      },
+      }
+    },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -89,7 +90,7 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60]
         }
       }
-    }, {
+  }, {
       sequelize,
       modelName: 'User',
       defaultScope: {
