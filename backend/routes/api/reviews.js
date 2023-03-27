@@ -22,22 +22,12 @@ const editReviewValidationError = [
 
 // get all reviews of current user
 router.get('/current', requireAuth, async (req, res) => {
-    // const userId = req.user.id
+    const userId = req.user.id
     const user = await Review.findByPk(req.user.id)
     const reviews = await Review.findAll({
         include: [
             {model: User, attributes: ['id', 'firstName', 'lastName']},
-            { model: Spot, attributes: ['id', 
-            'ownerId', 
-            'address', 
-            'city', 
-            'state', 
-            'country', 
-            'lat', 
-            'lng', 
-            'name', 
-            'price',
-        ]},
+            { model: Spot.scope({ method: ['withPreview', userId]})},
         {model: ReviewImage, attributes: ['id', 'url']}
         ]
     })

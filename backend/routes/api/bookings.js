@@ -13,8 +13,9 @@ router.get('/current', requireAuth, async (req, res) => {
     const bookings = await Booking.findAll({
         where: { userId: userId },
         include: [
-            { model: Spot, attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price'],
-        include: { model: SpotImage, attributes: ['url']}}
+            { model: Spot.scope({ method: ['withPreview', req.user.id]})}
+        //     { model: Spot, attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price'],
+        // include: { model: SpotImage, attributes: ['url'], where: { preview: true}, require: false}}
         ]
     })
     return res.json({"Bookings": bookings })
