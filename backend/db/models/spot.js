@@ -1,7 +1,12 @@
 'use strict';
 const { Model } = require('sequelize');
 const Sequelize = require('sequelize');
+
 let schema;
+if (process.env.NODE_ENV === 'production') {
+  schema = process.env.SCHEMA; 
+}
+
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
     /**
