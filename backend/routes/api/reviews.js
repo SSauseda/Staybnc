@@ -25,6 +25,7 @@ router.get('/current', requireAuth, async (req, res) => {
     const userId = req.user.id
     const user = await Review.findByPk(req.user.id)
     const reviews = await Review.findAll({
+        where: { userId },
         include: [
             {model: User, attributes: ['id', 'firstName', 'lastName']},
             { model: Spot.scope({ method: ['withPreview', userId]})},

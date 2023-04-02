@@ -536,6 +536,7 @@ let spots
       const lat = parseFloat(spot.lat);
       const lng = parseFloat(spot.lng);
       const price = parseFloat(spot.price);
+      const avgRating = parseFloat(spot.avgRating);
       return { 
         id: spot.id,
         ownerId: spot.ownerId,
@@ -550,6 +551,7 @@ let spots
         price,
         createdAt: spot.createdAt,
         updatedAt: spot.updatedAt,
+        avgRating,
         previewImage: spot.previewImage
       };
     });
