@@ -419,7 +419,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
             "statusCode": 404
         })
     }
-    if(spot.ownerId !== req.user.id) {
+    if(spot.ownerId == req.user.id) {
         return res.status(403).json({
             "message": "user not authorized"
         })
