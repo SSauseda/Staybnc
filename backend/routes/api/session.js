@@ -40,11 +40,11 @@ router.post('/', validateLogin, async (req, res, next) => {
   
       return res.json({
         user: {
+          email: user.email,
           id: user.id,
+          username: user.username,
           firstName: user.firstName,
           lastName: user.lastName,
-          email: user.email,
-          username: user.username
         }
       });
     }
