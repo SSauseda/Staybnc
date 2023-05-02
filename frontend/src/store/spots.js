@@ -47,6 +47,16 @@ export const getSpotsThunk = () => async dispatch => {
     }
 }
 
+export const spotDetailThunk = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`);
+
+    if (response.ok) {
+        const spotData = await response.json();
+        dispatch(getSpotDetail(spotData));
+        return spotData;
+    }
+};
+
 
 
 // Reducer
@@ -61,6 +71,9 @@ const spotReducer = (state = initialState, action) => {
             const getAllSpots = action.spots.Spots;
             getAllSpots.forEach((spot) => (allSpots[spot.id] = spot))
             newState['allSpots'] = { ...allSpots };
+            return newState;
+        case SPOT_DETAILS:
+            newState['spotDetails'] = action.spot;
             return newState;
         default:
             return state;
