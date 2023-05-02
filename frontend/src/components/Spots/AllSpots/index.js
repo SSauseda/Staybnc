@@ -39,9 +39,9 @@ export default function AllSpots() {
             </div>
             <div className="spot-container">
               <p className="location">
-                {spot.city}, {spot.state}
+                {spot.city}, {spot.state}{" "}
                 <span className="stars">
-                  ★
+                <i class="fa-solid fa-star"></i>
                   {Number(spot.avgRating)
                     ? Number(spot.avgRating).toFixed(1)
                     : "0"}
