@@ -1,0 +1,6 @@
+.spot-img {
+    width: 20%;
+    height: 17rem;
+    object-fit: cover;
+    border-radius: 5%;
+  }
