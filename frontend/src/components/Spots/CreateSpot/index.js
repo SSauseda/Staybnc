@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
+import * as spotActions from '../../../store/spots';
 
 
 
@@ -28,11 +29,35 @@ export default function CreateSpotForm() {
     const [image2, setImage2] = useState('');
     const [image3, setImage3] = useState('');
     const [image4, setImage4] = useState('');
-    const [previewImage, setPreviewImage] = useState('');
     const [errors, setErrors] = useState([]);
 
 
     if (!sessionUser) return <Redirect to={'/'} />
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        return dispatch(
+            spotActions.createSpotThunk(
+                {
+                    name,
+                    description,
+                    price,
+                    address,
+                    city,
+                    state,
+                    country,
+                    lat,
+                    lng
+                },
+                {
+                    url: imageURL,
+                    preview: true
+                },
+            )
+        )
+        
+    }
  
 
     return (
