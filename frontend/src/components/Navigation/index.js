@@ -5,7 +5,7 @@ import ProfileButton from "./ProfileButton";
 // import * as sessionActions from '../../store/session';
 // import OpenModalButton from "../OpenModalButton";
 // import LoginFormModal from "../LoginFormModal";
-// import SignupFormModal from "../SignupFormModal";
+import SignupFormModal from "../SignupFormModal";
 import './Navigation.css';
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import CreateSpotForm from "../Spots/CreateSpot";
@@ -47,12 +47,24 @@ function Navigation({ isLoaded }) {
             <li>
                 <NavLink exact to='/'>Home</NavLink>
             </li>
-            <div className="formButton">
-                <OpenModalMenuItem 
-                itemText='Staybnb your home'
-                modalComponent={<CreateSpotForm />}
+            {sessionUser ? (
+              <div className="bnbButton">
+                <OpenModalMenuItem
+                  itemText="bnb your home"
+                  modalComponent={<CreateSpotForm />}
                 />
-            </div>
+              </div>
+            ) : (
+              <div>
+                <div className="bnbButton">
+                  <OpenModalMenuItem
+                    className="bnbButton"
+                    itemText="bnb your home"
+                    modalComponent={<SignupFormModal />}
+                  />
+                </div>
+              </div>
+            )}
             {isLoaded && (
                 <li>
                     <ProfileButton user={sessionUser} />
