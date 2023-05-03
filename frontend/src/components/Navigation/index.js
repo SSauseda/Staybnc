@@ -7,6 +7,8 @@ import ProfileButton from "./ProfileButton";
 // import LoginFormModal from "../LoginFormModal";
 // import SignupFormModal from "../SignupFormModal";
 import './Navigation.css';
+import OpenModalMenuItem from "./OpenModalMenuItem";
+import CreateSpotForm from "../Spots/CreateSpot";
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -45,6 +47,12 @@ function Navigation({ isLoaded }) {
             <li>
                 <NavLink exact to='/'>Home</NavLink>
             </li>
+            <div className="formButton">
+                <OpenModalMenuItem 
+                itemText='Staybnb your home'
+                modalComponent={<CreateSpotForm />}
+                />
+            </div>
             {isLoaded && (
                 <li>
                     <ProfileButton user={sessionUser} />

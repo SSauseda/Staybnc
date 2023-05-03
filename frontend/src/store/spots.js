@@ -57,6 +57,40 @@ export const spotDetailThunk = (spotId) => async dispatch => {
     }
 };
 
+export const deleteSpotThunk = (deleteSpotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${deleteSpotId}`, {
+        method: "DELETE"
+    });
+    if (response.ok) {
+        dispatch(deleteSpot(deleteSpotId))
+    }
+};
+
+export const createSpotThunk = (newSpot, previewImage) => async dispatch => {
+    const response = await csrfFetch(`/api/spots`, {
+        metho: 'POST',
+        body: JSON.stringify(newSpot),
+    });
+
+    if (response.ok) {
+        const createdSpot = await response.json();
+        const imageResponse = await csrfFetch(`/api/spots/${createdSpot.id}/images`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                url: previewImage.url,
+                preview: true,
+            })
+        })
+        if (imageResponse.ok) {
+            const image = await imageResponse.json();
+            createdSpot.previewImage = image.url;
+            dispatch(createSpot(createdSpot));
+            return createdSpot;
+        }
+    }
+};
+
 
 
 // Reducer
@@ -66,15 +100,26 @@ const initialState = {}
 const spotReducer = (state = initialState, action) => {
     let newState = { ...state };
     switch (action.type) {
+        case DELETE_SPOT:
+            const deletedSpot = action.deleteSpot;
+            delete newState.userSpots[deletedSpot]
+            return newState;
+
+        case CREATE_SPOT:
+            const createSpot = action.newSpot;
+            return createSpot;
+
         case GET_SPOTS:
             const allSpots = {};
             const getAllSpots = action.spots.Spots;
             getAllSpots.forEach((spot) => (allSpots[spot.id] = spot))
             newState['allSpots'] = { ...allSpots };
             return newState;
+
         case SPOT_DETAILS:
             newState['spotDetails'] = action.spot;
             return newState;
+
         default:
             return state;
     }

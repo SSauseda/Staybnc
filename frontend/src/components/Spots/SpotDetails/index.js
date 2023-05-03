@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-import { spotDetailThunk } from "../../../store/spots";
+import { spotDetailThunk, getSpotsThunk} from "../../../store/spots";
 
 
-function SpotDetails() {
+export default function SpotDetails() {
     const dispatch = useDispatch();
     const { spotId } = useParams();
     // const history = useHistory();
@@ -20,30 +20,37 @@ function SpotDetails() {
         .then(() => setIsLoaded(true));
     }, [dispatch, spotId])
 
+    useEffect(() => {
+        dispatch(getSpotsThunk());
+    }, [dispatch])
+
+    if (!spot) return null;
+    if (!isLoaded) return null;
+
     const spotImg = spot?.SpotImages;
     // console.log("STPOSTPOIAMGEIAMGE",spotImg)
 
 
     return (
-        
-        <>test
+        <div>
          <div className="spotDetail-container">
              <div className="spotName">
                  <h1>{spot.name}</h1>
              </div>
              <div className="spotInfo">
-                 <i class="fa-solid fa-star"></i>
+                 {/* <i class="fa-solid fa-star"></i>
                     {Number(spot.avgStarRating) ? Number(spot.avgStarRating).toFixed(1) : 'No Reviews'}
-                         {" "}- {spot.numReviews} review(s) - {spot.city}, {spot.state}, {spot.country}
+                         {" "}- {spot.numReviews} review(s) -  */}
+                         {spot.city}, {spot.state}, {spot.country}
              </div>
              <div className="spotImages">
                 <div className="primaryImg">
                     <img src={spotImg[0].url} alt='primaryImage' className="primaryImage"/>
                 </div>
              </div>
+                {spot.description}
          </div>
-         </>
+         </div>
     )
 }
 
-export default SpotDetails;
