@@ -25,10 +25,10 @@ export default function CreateSpotForm() {
     const [lat, setLat] = useState('');
     const [lng, setLng] = useState('');
     const [imageURL, setImageURL] = useState('');
-    const [image1, setImage1] = useState('');
-    const [image2, setImage2] = useState('');
-    const [image3, setImage3] = useState('');
-    const [image4, setImage4] = useState('');
+    // const [image1, setImage1] = useState('');
+    // const [image2, setImage2] = useState('');
+    // const [image3, setImage3] = useState('');
+    // const [image4, setImage4] = useState('');
     const [errors, setErrors] = useState([]);
 
 
@@ -52,11 +52,18 @@ export default function CreateSpotForm() {
                 },
                 {
                     url: imageURL,
-                    preview: true
+                    preview: true,
                 },
             )
         )
-        
+        .then((spot) => {
+            closeModal();
+            history.push(`/spots/${spot.id}`);
+        })
+        .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+        })
     }
  
 
@@ -122,9 +129,9 @@ export default function CreateSpotForm() {
                 />
                 </div>
 {/* ****************************************************************************************** */}
-                <h2>Descripe your place to guests</h2>
+                <h2>Describe your place to guests</h2>
                 <h4>Mention the best features of your space, any special amentities like fast wifi or parking,
-                    and what you love about the neightborhood
+                    and what you love about the neightborhood.
                 </h4>
                 <textarea
                 rows='10'
@@ -166,7 +173,7 @@ export default function CreateSpotForm() {
                 required
                 placeholder="Preview Image URL"
                 />             
-                <button>Create Spot</button>
+                <button className="createSpotButton" type='submit' onClick={handleSubmit}>Create Spot</button>
             </form>
         </div>
         </>

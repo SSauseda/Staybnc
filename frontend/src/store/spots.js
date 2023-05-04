@@ -15,9 +15,9 @@ const getSpots = (spots) => ({
     spots
 });
 
-const createSpot = (addSpot) => ({
+const createSpot = (newSpot) => ({
     type: CREATE_SPOT,
-    addSpot
+    newSpot
 });
 
 const deleteSpot = (deleteSpot) => ({
@@ -68,10 +68,11 @@ export const deleteSpotThunk = (deleteSpotId) => async dispatch => {
 
 export const createSpotThunk = (newSpot, previewImage) => async dispatch => {
     const response = await csrfFetch(`/api/spots`, {
-        metho: 'POST',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(newSpot),
     });
-
+console.log("TEST", response)
     if (response.ok) {
         const createdSpot = await response.json();
         const imageResponse = await csrfFetch(`/api/spots/${createdSpot.id}/images`, {
