@@ -92,6 +92,20 @@ console.log("TEST", response)
     }
 };
 
+export const updateSpotThunk = (editSpot, spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editSpot),
+    });
+
+    if (response.ok) {
+        const updatedSpot = response.json();
+        dispatch(updateSpot(updatedSpot, spotId));
+        return updatedSpot;
+    }
+};
+
 
 
 // Reducer
@@ -115,6 +129,9 @@ const spotReducer = (state = initialState, action) => {
             const getAllSpots = action.spots.Spots;
             getAllSpots.forEach((spot) => (allSpots[spot.id] = spot))
             newState['allSpots'] = { ...allSpots };
+            return newState;
+
+        case EDIT_SPOT:
             return newState;
 
         case SPOT_DETAILS:
