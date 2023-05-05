@@ -8,7 +8,7 @@ import Navigation from './components/Navigation';
 import AllSpots from './components/Spots/AllSpots';
 import SpotDetails from './components/Spots/SpotDetails';
 import CreateSpotForm from './components/Spots/CreateSpot';
-// import EditSpotForm from './components/Spots/UpdateSpot';
+import EditSpotForm from './components/Spots/UpdateSpot';
 import ManageSpots from './components/Spots/ManageSpots';
 
 function App() {
@@ -38,13 +38,13 @@ function App() {
         <SpotDetails />
       </Route>
 
-      <Route path={'/manage'}>
+      <Route path={'/current'}>
         <ManageSpots />
       </Route>
 
-      {/* <Route path={'/spots/:spotId/edit'}>
+      <Route path={'/spots/:spotId/edit'}>
         <EditSpotForm />
-      </Route> */}
+      </Route>
 
       </Switch>}
     </>

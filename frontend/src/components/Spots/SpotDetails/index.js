@@ -14,7 +14,7 @@ export default function SpotDetails() {
     const sessionUser = useSelector((state) => state.session.user);
 
     const spot = useSelector((state) => state.spot.spotDetails);
-    // console.log("SPOTPSOTPSOT", spot)
+    console.log("SPOTPSOTPSOT", spot)
 
     useEffect(() => {
         dispatch(spotDetailThunk(spotId))

@@ -13,7 +13,7 @@ const USERS_SPOTS = 'spots/USERS_SPOTS';
 
 const getSpots = (spots) => ({
     type: GET_SPOTS,
-    spots
+    payload: spots
 });
 
 const createSpot = (newSpot) => ({
@@ -34,6 +34,11 @@ const updateSpot = (editSpot) => ({
 const getSpotDetail = (spot) => ({
     type: SPOT_DETAILS,
     spot
+})
+
+const getUserSpots = (spots) => ({
+    type: USERS_SPOTS,
+    spots
 })
 
 // Thunk Actions
@@ -107,6 +112,16 @@ export const updateSpotThunk = (editSpot, spotId) => async dispatch => {
     }
 };
 
+export const getUsersSpotsThunk = () => async dispatch => {
+    const response = await csrfFetch(`/api/spots/current`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(getUserSpots(data));
+        return data
+    }
+}
+
 
 
 // Reducer
@@ -126,11 +141,14 @@ const spotReducer = (state = initialState, action) => {
             return createSpot;
 
         case GET_SPOTS:
-            const allSpots = {};
-            const getAllSpots = action.spots.Spots;
-            getAllSpots.forEach((spot) => (allSpots[spot.id] = spot))
-            newState['allSpots'] = { ...allSpots };
-            return newState;
+            // const allSpots = {};
+            // const getAllSpots = action.spots.Spots;
+            // getAllSpots.forEach((spot) => (allSpots[spot.id] = spot))
+            // newState['allSpots'] = { ...allSpots };
+            // return newState;
+            newState = Object.assign({}, state)
+            newState.spots = action.payload
+            return newState
 
         case EDIT_SPOT:
             return newState;
