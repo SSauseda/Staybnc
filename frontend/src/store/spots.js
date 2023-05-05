@@ -6,6 +6,7 @@ const CREATE_SPOT = 'spots/CREATE_SPOT';
 const EDIT_SPOT = 'spots/UPDATE_SPOT';
 const DELETE_SPOT = 'spots/DELETE_SPOT';
 const SPOT_DETAILS = 'spots/SPOT_DETAILS';
+const USERS_SPOTS = 'spots/USERS_SPOTS';
 
 
 // Action Creators
@@ -136,6 +137,10 @@ const spotReducer = (state = initialState, action) => {
 
         case SPOT_DETAILS:
             newState['spotDetails'] = action.spot;
+            return newState;
+
+        case USERS_SPOTS:
+            newState['userSpots'] = action.userSpots;
             return newState;
 
         default:
