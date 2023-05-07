@@ -20,7 +20,7 @@ function App() {
 
 
 
-  return isLoaded && (
+  return (
     <>
     <Navigation isLoaded={isLoaded} />
     {isLoaded && 
@@ -42,7 +42,7 @@ function App() {
         <ManageSpots />
       </Route>
 
-      <Route path={'/spots/:spotId/edit'}>
+      <Route exact path={'/spots/:spotId/edit'}>
         <EditSpotForm />
       </Route>
 

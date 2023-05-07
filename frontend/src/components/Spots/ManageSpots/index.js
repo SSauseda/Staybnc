@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function ManageSpots() {
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const spots = useSelector(state => state.spot.spots)
     const sessionUser = useSelector(state => state.session.user)
