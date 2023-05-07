@@ -2,66 +2,196 @@ import { useDispatch, useSelector } from "react-redux";
 import * as spotActions from '../../../store/spots'
 import React, { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { getSpotsThunk } from "../../../store/spots";
+import { spotDetailThunk } from "../../../store/spots";
+import { deleteSpotThunk } from "../../../store/spots";
+import { useState } from "react";
+import CreateSpotForm from "../CreateSpot";
+import DeleteSpotModal from "../DeleteSpot";
 
-export default function ManageSpots() {
-    const history = useHistory();
-    const dispatch = useDispatch();
 
+export default function ManageSpots({ createdSpotId }) {
     const spots = useSelector(state => state.spot.spots)
     const sessionUser = useSelector(state => state.session.user)
 
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const [createSpot, setCreateSpot] = useState(false)
+    const [isCreateSpotOpen, setIsCreateSpotOpen] = useState(false)
+    const [spotToDelete, setSpotToDelete] = useState(null)
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false)
+    const [isLoaded, setIsLoaded] = useState(false)
+    const [showOverlay, setShowOverlay] = useState(false)
+    
     const allSpots = spots?.Spots ? Object.values(spots.Spots) : []
 
     let currentUserSpots;
-    if (sessionUser){
+    if (sessionUser) {
         currentUserSpots = allSpots.filter(spot => spot.ownerId === sessionUser.id)
     } else {
         history.push('/')
     }
-let OpenModalButton
-    console.log("TESTTESTTEST", currentUserSpots);
-    return spots && (
-        <div>
-            <h1>Manage Your Spots</h1>
 
+    useEffect(() => {
+        dispatch(getSpotsThunk())
+        setIsLoaded(true)
+    }, [dispatch])
 
-            {currentUserSpots.length === 0 ? (
+    const handleCreateSpotClick = () => {
+        setIsCreateSpotOpen(true)
+    }
 
-                <Link to='/spots/new'>
-                    <button>Create a New Spot</button>
-                </Link>
-            ) : null}
+    const handleUpdateSpotClick = async (e, spotId) => {
+        e.preventDefault()
+        await dispatch(spotDetailThunk(spotId)).then(() =>
+        history.push(`/spots/${spotId}/edit`)
+        )
+    }
 
-            <div className="spots-container">
-            {currentUserSpots.map(spot => (
-                
-                <Link to={`/spots/${spot.id}`} className="spot-link" key={spot.id}> 
+    const openCreateSpotModal = () => {
+        setCreateSpot(false)
+        setShowOverlay(false)
+        history.push(`/spots/${createdSpotId}`)
+    }
 
+    const handleCreationSuccess = () => {
+        setCreateSpot(false)
+        setShowOverlay(false)
+        history.push(`/spots/${createdSpotId}`)
+    }
 
-                <div className="spot-card" key={spot.id} data-spot-name={spot.name}>
-                        <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{ height:  '300px'}} />
-                        
+    const handleDelete = spotId => {
+        setSpotToDelete(spotId)
+        setDeleteModalOpen(true)
+    }
 
-                    <div className="card-text">
-                        <p>{spot.city}, {spot.state}</p>
-                        {isNaN(spot.avgRating) ? <div className="stars-container"><p className="fa-solid fa-star">New</p></div> : <div className="stars-container"><p className="fa-solid fa-star">{spot.avgRating}</p></div>}
-                        <p>${spot.price} night</p>
-                    </div>
+    const handleDeleteConfirm = () => {
+        if(spotToDelete){
+            dispatch(deleteSpotThunk(spotToDelete))
+            setSpotToDelete(null)   
+        }
+        setDeleteModalOpen(false)
+        history.push('/')
+    }
 
-                    <div className="update-delete">
-                    <Link to={`/spots/${spot.id}/edit`}>
-                        <button>Update</button>
+    const handleDeleteCancel = () => {
+        setSpotToDelete(null)
+        setDeleteModalOpen(false)
+    }
 
-                    </Link>
-                    
-                    </div>
-                        
+    if (!spots) return null;
+
+    return (
+        currentUserSpots && (
+            <>
+              {isLoaded && sessionUser && currentUserSpots.length > 0 ? (
+                <div className='manage-spots-heading'>
+                  <h2 className='manage-spots-title'>Manage Your Spots</h2>
+                  {sessionUser && (
+                    <button
+                      className='create-spot-btn manage'
+                      onClick={handleCreateSpotClick}
+                    >
+                      Create a New Spot
+                    </button>
+                  )}
+                  {isCreateSpotOpen && (
+                    <CreateSpotForm
+                      open={openCreateSpotModal}
+                      // TEMPORARY DONT ALLOW CREATE SPOT TO CLOSE
+                      onClose={() => {
+                        setIsCreateSpotOpen(false)
+                      }}
+                      onSuccess={handleCreationSuccess}
+                    >
+                      <CreateSpotForm open={setIsCreateSpotOpen} />
+                    </CreateSpotForm>
+                  )}
                 </div>
-                </Link>
-            ))}
-            </div>
-        </div>
-
+              ) : (
+                <div className='manage-spots-heading'>
+                  {sessionUser && currentUserSpots.length === 0 && (
+                    <div>
+                      <h2 className='manage-spots-title'>
+                        Manage your hosted spots here!
+                      </h2>
+                      <button
+                        className='create-spot-btn manage'
+                        onClick={handleCreateSpotClick}
+                      >
+                        Create a New Spot
+                      </button>
+                    </div>
+                  )}
+                  {isCreateSpotOpen && (
+                    <CreateSpotForm
+                      open={openCreateSpotModal}
+                      // TEMPORARY DONT ALLOW CREATE SPOT TO CLOSE
+                      onClose={() => {
+                        setIsCreateSpotOpen(false)
+                      }}
+                      onSuccess={handleCreationSuccess}
+                    >
+                      <CreateSpotForm open={setIsCreateSpotOpen} />
+                    </CreateSpotForm>
+                  )}
+                </div>
+              )}
+      
+              <div className='manage-spots'>
+                {isLoaded &&
+                  sessionUser &&
+                  currentUserSpots.map(spot => (
+                    <div className='manage-spot'>
+                      <div className='manage-spots-img1' key={spot.id}>
+                        <NavLink to={`/spots/${spot.id}`} key={spot.previewImage}>
+                          <img src={spot.previewImage} alt='#' className='spot-img' />
+                        </NavLink>
+                        <div className='location-stars-price'>
+                          <div className='location'>
+                            {spot.city}, {spot.state}
+                          </div>
+                          <div>
+                            <i className='star-icon'></i>
+                            {'\u2605'}
+                            {spot.avgRating ? spot.avgRating : 'New'}
+                          </div>
+                        </div>
+                        <div className='manage-spots-price'>${spot.price} night</div>
+                        <div className='update-delete-btns'>
+                          <button
+                            className='update-delete-btn'
+                            onClick={e => handleUpdateSpotClick(e, spot.id)}
+                          >
+                            Update
+                          </button>
+      
+                          <button
+                            className='update-delete-btn'
+                            onClick={() => handleDelete(spot.id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+              {deleteModalOpen && (
+                <DeleteSpotModal
+                  isOpen={deleteModalOpen}
+                  onDelete={handleDeleteConfirm}
+                  onCancel={handleDeleteCancel}
+                  onClose={() => {
+                    setDeleteModalOpen(false)
+                    setShowOverlay(false)
+                  }}
+                />
+              )}
+            </>
+          )
     )
+
 }
