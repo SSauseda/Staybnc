@@ -5,7 +5,9 @@ import { getSpotsThunk } from "../../../store/spots";
 import "./AllSpots.css";
 
 export default function AllSpots() {
-  const spots = useSelector((state) => state.spot.allSpots);
+  const spots = useSelector(state => state.spot.spots)
+  // const spots = useSelector((state) => state.spot.allSpots);
+  // console.log("TESTTESTTEST SPOTS", typeof spots)
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -16,6 +18,7 @@ export default function AllSpots() {
   
   if (!spots) return null;
   const allOfSpots = Object.values(spots);
+  console.log("TESTTESTTEST", allOfSpots)
 
   const clickHandler = (spotId) => {
     history.push(`/spots/${spotId}`);
@@ -23,7 +26,7 @@ export default function AllSpots() {
 
   return (
     <div className="allSpots-container">
-      {allOfSpots.map((spot) => {
+      {allOfSpots[0].map((spot) => {
         return (
           <div
             className="spot"
@@ -39,9 +42,9 @@ export default function AllSpots() {
             </div>
             <div className="spot-container">
               <p className="location">
-                {spot.city}, {spot.state}
+                {spot.city}, {spot.state}{" "}
                 <span className="stars">
-                  ★
+                <i className="fa-solid fa-star"></i>
                   {Number(spot.avgRating)
                     ? Number(spot.avgRating).toFixed(1)
                     : "0"}

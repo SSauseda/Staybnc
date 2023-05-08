@@ -6,6 +6,10 @@ import { Switch, Route } from 'react-router-dom';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 import AllSpots from './components/Spots/AllSpots';
+import SpotDetails from './components/Spots/SpotDetails';
+import CreateSpotForm from './components/Spots/CreateSpot';
+import EditSpotForm from './components/Spots/UpdateSpot';
+import ManageSpots from './components/Spots/ManageSpots';
 
 function App() {
   const dispatch = useDispatch();
@@ -16,14 +20,32 @@ function App() {
 
 
 
-  return isLoaded && (
+  return (
     <>
     <Navigation isLoaded={isLoaded} />
     {isLoaded && 
     <Switch>
+
       <Route exact path={'/'}>
         <AllSpots />
       </Route>
+
+      <Route path={'/spots/new'}>
+        <CreateSpotForm />
+      </Route>
+
+      <Route exact path={'/spots/:spotId'}>
+        <SpotDetails />
+      </Route>
+
+      <Route path={'/current'}>
+        <ManageSpots />
+      </Route>
+
+      <Route exact path={'/spots/:spotId/edit'}>
+        <EditSpotForm />
+      </Route>
+
       </Switch>}
     </>
   );
