@@ -1,0 +1,23 @@
+.login-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-modal {
+    position: relative;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    height: auto;
+    width: 500px;
+    z-index: 9999;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+}

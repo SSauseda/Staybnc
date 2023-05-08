@@ -1,46 +1,49 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect, useRef } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import * as sessionActions from '../../store/session';
 import ProfileButton from "./ProfileButton";
-// import * as sessionActions from '../../store/session';
-// import OpenModalButton from "../OpenModalButton";
-// import LoginFormModal from "../LoginFormModal";
+import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import './Navigation.css';
-import OpenModalMenuItem from "./OpenModalMenuItem";
 import CreateSpotForm from "../Spots/CreateSpot";
+// import CreateSpotModal from "../Spots/CreateSpot/CreateSpotModal";
+// import LoginFormPage from "../LoginFormPage";
+// import SignupFormPage from "../SignupFormPage";
+import './Navigation.css';
+import OpenModalMenuItem from './OpenModalMenuItem'
+import OpenModalButton from "../OpenModalButton";
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // const logout = (e) => {
-    //     e.preventDefault();
-    //     dispatch(sessionActions.logout());
-    // };
+    const logout = (e) => {
+        e.preventDefault();
+        dispatch(sessionActions.logout());
+    };
 
-    // let sessionLinks;
-    // if (sessionUser) {
-    //     sessionLinks = (
-    //         <li>
-    //             <ProfileButton user={sessionUser} />
-    //             {/* <button onClick={logout}>Log Out</button> */}
-    //         </li>
-    //     );
-    // } else {
-    //     sessionLinks = (
-    //         <li>
-    //             <OpenModalButton
-    //             buttonText='Log In'
-    //             modalComponent={<LoginFormModal />}
-    //             />
-    //             <OpenModalButton 
-    //             buttonText='Sign Up'
-    //             modalComponent={<SignupFormModal />}
-    //             />
-    //         </li>
-    //     );
-    // }
+    let sessionLinks;
+    if (sessionUser) {
+        sessionLinks = (
+            <li>
+                <ProfileButton user={sessionUser} />
+                <button onClick={logout}>Log Out</button>
+            </li>
+        );
+    } else {
+        sessionLinks = (
+            <li>
+                <OpenModalButton
+                buttonText='Log In'
+                modalComponent={<LoginFormModal />}
+                />
+                <OpenModalButton 
+                buttonText='Sign Up'
+                modalComponent={<SignupFormModal />}
+                />
+            </li>
+        );
+    }
 
     return (
         <ul>
@@ -51,10 +54,9 @@ function Navigation({ isLoaded }) {
               <div className="bnbButton">
                   <NavLink exact to='/spots/new'>
                     Staybnb your home
-                {/* <OpenModalMenuItem
-                  itemText="bnb your home"
+                <OpenModalMenuItem
                   modalComponent={<CreateSpotForm />}
-                  /> */}
+                  /> 
                   </NavLink>
               </div>
             ) : (
@@ -78,4 +80,3 @@ function Navigation({ isLoaded }) {
 }
 
 export default Navigation;
-
