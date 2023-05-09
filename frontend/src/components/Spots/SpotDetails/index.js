@@ -39,7 +39,7 @@ export default function SpotDetails() {
     const createNewReview = async (e, review, stars) => {
         e.preventDefault();
 
-        await dispatch(createNewReview({ review, stars }, spotId)).catch(
+        await dispatch(createReviewThunk({ review, stars }, spotId)).catch(
             async response => {
                 const errors = []
                 const data = await response.json();
@@ -66,26 +66,6 @@ export default function SpotDetails() {
 
 
     return (
-    //     <div>
-    //      <div className="spotDetail-container">
-    //          <div className="spotName">
-    //              <h1>{spot.name}</h1>
-    //          </div>
-    //          <div className="spotInfo">
-    //              {/* <i class="fa-solid fa-star"></i>
-    //                 {Number(spot.avgStarRating) ? Number(spot.avgStarRating).toFixed(1) : 'No Reviews'}
-    //                      {" "}- {spot.numReviews} review(s) -  */}
-    //                      {spot.city}, {spot.state}, {spot.country}
-    //          </div>
-    //          <div className="spotImages">
-    //             <div className="primaryImg">
-    //                 <img src={spotImg[0].url} alt='primaryImage' className="primaryImage"/>
-    //             </div>
-    //          </div>
-    //      </div>
-    //      <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-    //      {spot.description}
-    //      </div>
     <div className="spot-details-container">
         <div className="spot-details">
             <div className="spot-deatils-header">

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { getReviewsThunk } from '../../../../store/reviews'
+import { createReviewThunk, getReviewsThunk } from '../../../../store/reviews'
 
 export default function CreateReviewForm ({
   spotId,
@@ -23,7 +23,15 @@ export default function CreateReviewForm ({
 
   const handleSubmitReview = async (e) => {
     e.preventDefault();
-  }
+    const errors = {}
+    if (review.length < 10 || stars === '') {
+        errors.errorMsg = 'Please write a minimum of 10 characters and select a star rating of at least 1.'
+        setErrors(errors)
+        return
+    }
+    const res = await createNewReview(e, review, stars)
+    closeModal()
+    }
 
   return (
     <div className='post-review-container'>
