@@ -1,5 +1,120 @@
-.primaryImage {
-    width: 50%;
-    height: 99%;
-    border-radius: 5% 0 0 5%;
+.spot-details-container {
+    position: relative;
+    border-top: 1px solid rgba(81,81,81,0.207);
+    z-index: 2;
 }
+
+.primary-image {
+    border-radius: 4px;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-top: 5px;
+    width: 30%;
+    height: 100%;
+}
+
+.other-image-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px;
+    margin-top: 20px;
+    width: 450px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.spot-details {
+    padding-top: 100px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.other-images {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.grid-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.spot-images {
+    margin-top: 20px;
+}
+
+.spot-images img {
+    max-width: 500px;
+    max-height: 500px;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+.spot-description {
+    flex-grow: 1;
+    margin-left: none;
+}
+
+.spot-stars {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+}
+
+.spot-details h1 {
+    font-size: 35px;
+    margin: 0;
+}
+
+.spot-location {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.spot-price-box {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    overflow: hidden;
+}
+
+.stars-reviews-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    margin-left: 70px;
+}
+
+.dot {
+    font-size: 20px;
+    color: rgb(109, 107, 105);
+}
+
+.reservation-container {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.description-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
