@@ -33,6 +33,8 @@ export default function AllSpots() {
             key={spot.id}
             onClick={() => clickHandler(spot.id)}
           >
+            <div className="tooltip-on-hover"></div>
+            <div className="tooltip" title={spot.name}>{spot.name}</div>
             <div className="previewImg">
               <img
                 className="spot-img"
@@ -50,11 +52,12 @@ export default function AllSpots() {
                     : "0"}
                 </span>
               </p>
-
+              <div className="spot-data">
               <p className="spot-name">{spot.name}</p>
               <p className="price">
-                <span className="spot-price">${spot.price}</span> night
+                <div className="spot-price">${spot.price}</div> night
               </p>
+              </div>
             </div>
           </div>
         );
