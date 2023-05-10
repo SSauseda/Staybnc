@@ -12,19 +12,19 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         ownerId: 1,
-        address: '123 Test st',
+        address: '123 Test Street',
         city: 'Dallas',
         state: 'Texas',
         country: 'USA',
         lat: 32.7767,
         lng: 96.7970,
         name: 'Texas Living',
-        description: 'Roomy home for a great weekend',
+        description: 'Roomy home for a great weekend. This place features multiple large rooms, all with queen beds, a comfortable sofa, table and chair for everyone to enjoy',
         price: 250
       },
       {
-        ownerId: 1,
-        address: '2202 Madison st',
+        ownerId: 2,
+        address: '2202 Madison Street',
         city: 'Chicago',
         state: 'Illinois',
         country: 'USA',
@@ -35,8 +35,8 @@ module.exports = {
         price: 400
       },
       {
-        ownerId: 1,
-        address: '999 Beach ave',
+        ownerId: 3,
+        address: '999 Beach Ave.',
         city: 'Miami',
         state: 'Florida',
         country: 'USA',
@@ -44,6 +44,90 @@ module.exports = {
         lng: 80.1918,
         name: 'Highrise beachfront',
         description: 'Luxury home with beach views',
+        price: 500
+      },
+      {
+        ownerId: 2,
+        address: '1274 Byrd Lane',
+        city: 'Santa Fe',
+        state: 'New Mexico',
+        country: 'USA',
+        lat: 25.7617,
+        lng: 80.1918,
+        name: 'Mountain View Tiny Home',
+        description: 'Reconnect with the beautiful nature. You are minutes away from enjoying the great outdoor activies this place has to offer.',
+        price: 250
+      },
+      {
+        ownerId: 3,
+        address: '760 Gordon Street',
+        city: 'Los Angeles',
+        state: 'California',
+        country: 'USA',
+        lat: 25.7617,
+        lng: 80.1918,
+        name: 'A-Frame Cabin',
+        description: 'Enjoy the great designed cabin surrounded by evergreens and nestled behind a charming seasonal creek',
+        price: 400
+      },
+      {
+        ownerId: 1,
+        address: '760 Gordon Street',
+        city: 'Fredericksburg',
+        state: 'Texas',
+        country: 'USA',
+        lat: 25.7617,
+        lng: 80.1918,
+        name: 'Peach Log Cabin',
+        description: 'Peach Log Cabin offers two spacious bedrooms and an antique copper soaking tub. Relax in this great retreat, only five miles from Downtown with access to great restaurants and shopping.',
+        price: 300
+      },
+      {
+        ownerId: 1,
+        address: '469 Carolina Ave.',
+        city: 'Denver',
+        state: 'Colorado',
+        country: 'USA',
+        lat: 25.7617,
+        lng: 80.1918,
+        name: 'Dream Ridge',
+        description: 'Dream Ridge is the ideal escape to enjoy your next Telluride vacation. With over 10 bedrooms, everyone has a space to enjoy with the many features and amenities included.',
+        price: 500
+      },
+      {
+        ownerId: 3,
+        address: '998 Crowfield Road',
+        city: 'Phoenix',
+        state: 'Arizona',
+        country: 'USA',
+        lat: 25.7617,
+        lng: 80.1918,
+        name: 'Modern Ranch Cabin',
+        description: 'Surrounded by large mountain views, Modern Ranch Cabin offers a large screened porch to enjoy the incredible mountain views. ',
+        price: 500
+      },
+      {
+        ownerId: 3,
+        address: '122 Late Ave.',
+        city: 'Oklahoma City',
+        state: 'Oklahoma',
+        country: 'USA',
+        lat: 25.7617,
+        lng: 80.1918,
+        name: 'Greenwood Cottage',
+        description: 'Bright and colorful cabin tucked in the towering pines of Oklahoma',
+        price: 500
+      },
+      {
+        ownerId: 2,
+        address: '448 Union Street',
+        city: 'Seattle',
+        state: 'Washington',
+        country: 'USA',
+        lat: 25.7617,
+        lng: 80.1918,
+        name: 'Charming Outdoor Cabin',
+        description: 'This charming cabin offers a rustic-yet-modern interior, year-round adventures, and access to 3 lake beaches for fishing, picknicking, swimming, tennis, and more!',
         price: 500
       },
     ])

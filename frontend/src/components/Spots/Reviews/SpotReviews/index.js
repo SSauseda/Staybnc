@@ -11,7 +11,7 @@ import CreateReviewForm from "../CreateReview";
 
 export default function SpotReviews ({ createNewReview }) {
     const reviews = useSelector(state => state.review.allReviews)
-    console.log("TESTREVIEWSTESTREVIEWSTESTREVIEWSTESTREVIEWS" ,reviews)
+    // console.log("TESTREVIEWSTESTREVIEWSTESTREVIEWSTESTREVIEWS" ,reviews)
     const spot = useSelector(state => state.spot.spotDetails)
     const sessionUser = useSelector(state => state.session.user)
 
@@ -54,7 +54,6 @@ export default function SpotReviews ({ createNewReview }) {
 
     return (
         <div>
-        <h1>TEST REVIEW!</h1>
           <div className='reviews-header'>
             <h1 className='stars-rating'>
               ★

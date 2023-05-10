@@ -80,6 +80,20 @@
   align-items: flex-start;
 }
 
+.spot .location {
+  font-size: 16px;
+  position: relative;
+  color: #454444;
+}
+
+.spot .spot-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #454444;
+}
+
+
 .stars {
   display: flex;
   flex-direction: row;
@@ -87,6 +101,7 @@
 }
 
 .spot .spot-price {
+  display: inline;
   font-weight: bold;
   color: #f4687f;
 }

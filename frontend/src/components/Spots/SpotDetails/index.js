@@ -46,7 +46,7 @@ export default function SpotDetails() {
 
                 if (data && data.errors) {
                  errors = data.errors
-                 console.log("errorserrors", errors)
+                //  console.log("errorserrors", errors)
                 }
             }
         )
@@ -59,8 +59,9 @@ export default function SpotDetails() {
     if (!spot) return null;
     if (!isLoaded) return null;
 
-    const spotImg = spot.SpotImages;
-    console.log("STPOSTPOIAMGEIAMGE",spotImg)
+    const spotImg = spot.SpotImages.find(img => img.preview);
+    const otherImg = spot.SpotImages.filter(img => !img.preview)
+    // console.log("STPOSTPOIAMGEIAMGE",otherImg)
 
 
 
@@ -70,30 +71,40 @@ export default function SpotDetails() {
         <div className="spot-details">
             <div className="spot-deatils-header">
                 <h1 className="spot-name">{spot.name}</h1>
-                <div className="spot-locaiton">
+                <div className="spot-location">
                     {spot.city}, {spot.state}, {spot.country}
                 </div>
             </div>
             <div className="grid-container">
                 <div className="spot-images">
                     <img
-                    src={spotImg[0].url}
-                    key={spotImg[0].id}
+                    src={spotImg.url}
+                    key={spotImg.id}
                     alt='primaryImage'
                     className="primary-image"
                     />
                 </div>
                 <div className="other-image-grid">
-                    Coming soon!
+                    {otherImg.map(img => (
+                        <img 
+                        src={img.url}
+                        key={img.id}
+                        alt={img.altText}
+                        className="other-images"
+                        />
+                    ))}
                 </div>
             </div>
             <h2 className="Hosted-text">
                 Hosted by {spot.Owner.firstName} {spot.Owner.lastName}
             </h2>
-            <div className="description">
+            <div className="description-container">
                 <div className="spot-description">
                     {spot.description}
                 </div>
+                <div className="reservation-container">
+
+                
                 <div>
                     Reservation box
                     <div className="spot-price-box">
@@ -118,7 +129,7 @@ export default function SpotDetails() {
                                 {spot.numReviews > 0 ? (
                                     <p className="dot">·</p>
                                 ) : (
-                                    <p className="white-space"></p>
+                                    <p className="white-space">{" "}</p>
                                 )}
                                 <div className="num-reviews">
                                     {spot.numReviews > 0 ? (
@@ -130,6 +141,7 @@ export default function SpotDetails() {
                                     )}
                                 </div>
                             </div>
+                            </div>
                         </div>
                         <div className="spot-reserve">
                             <button
@@ -139,7 +151,7 @@ export default function SpotDetails() {
                                 Reserve
                             </button>
                         </div>
-                    </div>
+                </div>
                 </div>
             </div>
             <div>

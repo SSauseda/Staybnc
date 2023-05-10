@@ -21,7 +21,7 @@ module.exports = {
       {
         reviewId: 3,
         url: 'https://images.unsplash.com/photo-1632974059045-a1a14d356f30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-      }
+      },
     ])
   },
 
