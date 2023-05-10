@@ -1,4 +1,4 @@
-/* .allSpots-container {
+.allSpots-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 2fr));
   gap: 20px;
@@ -8,9 +8,9 @@
   padding: 10px;
   position: absolute;
   z-index: 1;
-}  */
+}
 
-/* .spot {
+.spot {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -20,18 +20,13 @@
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   z-index: 2;
-} 
-.spot:hover {
-  transform: scale(1.05);
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  border-color: rgba(0, 0, 0, 0.05);
 }
 
 .spot .previewImg {
   height: 200px;
-  background-color: #eee;
   position: relative;
   overflow: hidden;
+  background-color: #fff;
 }
 
 .spot .previewImg img {
@@ -39,6 +34,7 @@
   height: 100%;
   object-fit: cover;
 }
+
 
 .spot .spot-container {
   padding: 10px;
@@ -48,10 +44,46 @@
   flex-direction: column;
 }
 
-.spot .spot-name {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.tooltip {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  border: none;
+  border-radius: 4px;
+  padding: 5px;
+  transition: opacity 0.3s;
+  background-color: #5f5d5d91;
+  color: #eeeeeec9;
+  opacity: 0.4;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spot:hover .tooltip {
+  visibility: visible;
+  /* font-weight: bold; */
+  font-style: italic;
+  opacity: 1;
+}
+
+.spot:hover {
+  transform: scale(1.05);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  border-color: rgba(0,0,0,0.05);
+}
+
+.spot-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.stars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .spot .spot-price {
@@ -61,10 +93,4 @@
 
 .price {
   position: relative;
-  left: -50;
 }
-
-.stars {
-  display: flex;
-  flex-direction: row;
-} */

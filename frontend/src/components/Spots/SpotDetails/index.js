@@ -59,8 +59,8 @@ export default function SpotDetails() {
     if (!spot) return null;
     if (!isLoaded) return null;
 
-    const spotImg = spot?.SpotImages;
-    // console.log("STPOSTPOIAMGEIAMGE",spotImg)
+    const spotImg = spot.SpotImages;
+    console.log("STPOSTPOIAMGEIAMGE",spotImg)
 
 
 

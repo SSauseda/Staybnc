@@ -6,6 +6,7 @@ import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import CreateSpotForm from "../Spots/CreateSpot";
+import {ReactComponent as Logo} from '../Navigation/images/logo.svg'
 // import CreateSpotModal from "../Spots/CreateSpot/CreateSpotModal";
 // import LoginFormPage from "../LoginFormPage";
 // import SignupFormPage from "../SignupFormPage";
@@ -46,14 +47,16 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <ul>
+        <ul className="container">
             <li>
-                <NavLink exact to='/'>Home</NavLink>
+                <NavLink exact to='/'>
+                  <Logo className='logo' alt='logo'></Logo>
+                  </NavLink>
             </li>
             {sessionUser ? (
-              <div className="bnbButton">
+              <div className="top-right">
                   <NavLink exact to='/spots/new'>
-                    Staybnb your home
+                    Create a New Spot
                 <OpenModalMenuItem
                   modalComponent={<CreateSpotForm />}
                   /> 
@@ -61,11 +64,11 @@ function Navigation({ isLoaded }) {
               </div>
             ) : (
               <div>
-                <div className="bnbButton">
+                <div className="top-right">
                   <OpenModalMenuItem
                     className="bnbButton"
-                    itemText="Staybnb your home"
-                    modalComponent={<SignupFormModal />}
+                    itemText="Log In to Create a New Spot"
+                    modalComponent={<LoginFormModal />}
                   />
                 </div>
               </div>
