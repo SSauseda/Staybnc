@@ -1,4 +1,5 @@
 import React from 'react'
+import './CreateReviewModal.css'
 
 function CreateReviewModal ({ open, children, onClose }) {
   if (!open) return null

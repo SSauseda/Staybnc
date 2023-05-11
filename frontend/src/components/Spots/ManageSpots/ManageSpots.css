@@ -53,6 +53,10 @@
     /* width: 50px; */
 }
 
+.avgRating-num {
+    font-size: 25px;
+}
+
 .manage-spots-price {
     font-size: 16px;
     color: #484848;

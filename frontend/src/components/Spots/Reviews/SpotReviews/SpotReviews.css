@@ -1,0 +1,95 @@
+.reviews-header {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    color: #484848;
+}
+
+.stars-rating {
+    margin-right: 0.5em;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    color: red;
+}
+
+.avg-rating {
+    margin-left: 0.2em;
+}
+
+.review-dot {
+    margin: 0 0.5em;
+    height: 5px;
+    width: 5px;
+    background-color: #484848;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.reviews-total {
+    font-size: 1em;
+}
+
+.post-review-btn {
+    background-color: #ff5a5f;
+    color: #fff;
+    border: none;
+    padding: 0.5em 2em;
+    margin: 1em 0;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.post-review-btn:hover {
+    background-color: #ff3b40;
+}
+
+.reviews-container {
+    list-style-type: none;
+}
+
+.review-container {
+    padding: 1em;
+    border-bottom: 1px solid #ebebeb;
+
+}
+
+.user-review-container {
+    margin-top: 16px;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.review-user {
+    font-weight: bold;
+    color: #484848;
+    
+}
+
+.review-date {
+    font-size: 0.8em;
+    color: #767676;
+    /* border: 1px solid red; */
+}
+
+.desc {
+    margin: 0.5em 0;
+    /* border: 1px solid red; */
+}
+
+.delete-review-btn {
+    background-color: transparent;
+    color: #ff5a5f;
+    border: none;
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: color 0.3s;
+}
+
+.delete-review-btn:hover {
+    color: #ff3b40;
+}

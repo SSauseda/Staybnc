@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { createReviewThunk, getReviewsThunk } from '../../../../store/reviews'
+import './CreateNewReview.css'
+
 
 export default function CreateReviewForm ({
   spotId,

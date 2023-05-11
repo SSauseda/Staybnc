@@ -12,7 +12,7 @@ export default function EditSpotForm() {
 
     const sessionUser = useSelector(state => state.session.user);
     const spot = useSelector(state => state.spot.spotDetails);
-    const preview = spot.SpotImages.find(image => image.preview === true)
+    const preview = spot.SpotImages.find(image => image.preview)
     const previewUrl = preview.url
 
 
@@ -25,7 +25,7 @@ export default function EditSpotForm() {
     const [country, setCountry] = useState(spot.country);
     const [lat, setLat] = useState(spot.lat);
     const [lng, setLng] = useState(spot.lng);
-    const [imageURL, setImageURL] = useState(previewUrl);
+    const [imageURL, setImageURL] = useState('');
     const [prevImage1, setPrevImage1] = useState('');
     const [prevImage2, setPrevImage2] = useState('');
     const [prevImage3, setPrevImage3] = useState('');

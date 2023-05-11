@@ -49,7 +49,7 @@ export default function AllSpots() {
                 <i className="fa-solid fa-star"></i>
                   {Number(spot.avgRating)
                     ? Number(spot.avgRating).toFixed(1)
-                    : "0"}
+                    : "New"}
                 </span>
               </p>
               <div className="spot-data">
