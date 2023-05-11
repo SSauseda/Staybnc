@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './DeleteSpotModal.css'
 
 export default function DeleteSpotModal ({ isOpen, onCancel, onDelete, onClose }) {
     if (!isOpen) {

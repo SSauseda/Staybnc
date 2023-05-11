@@ -9,6 +9,7 @@ import { deleteSpotThunk } from "../../../store/spots";
 import { useState } from "react";
 import CreateSpotForm from "../CreateSpot";
 import DeleteSpotModal from "../DeleteSpot";
+import './ManageSpots.css'
 
 
 export default function ManageSpots({ createdSpotId }) {
@@ -40,7 +41,7 @@ export default function ManageSpots({ createdSpotId }) {
     }, [dispatch])
 
     const handleCreateSpotClick = () => {
-        setIsCreateSpotOpen(true)
+        history.push('/spots/new')
     }
 
     const handleUpdateSpotClick = async (e, spotId) => {
@@ -88,7 +89,7 @@ export default function ManageSpots({ createdSpotId }) {
             <>
               {isLoaded && sessionUser && currentUserSpots.length > 0 ? (
                 <div className='manage-spots-heading'>
-                  <h2 className='manage-spots-title'>Manage Your Spots</h2>
+                  <h2 className='manage-spots-title' style={{ fontSize: 25 }}>Manage Your Spots</h2>
                   {sessionUser && (
                     <button
                       className='create-spot-btn manage'
@@ -100,7 +101,6 @@ export default function ManageSpots({ createdSpotId }) {
                   {isCreateSpotOpen && (
                     <CreateSpotForm
                       open={openCreateSpotModal}
-                      // TEMPORARY DONT ALLOW CREATE SPOT TO CLOSE
                       onClose={() => {
                         setIsCreateSpotOpen(false)
                       }}
@@ -128,7 +128,6 @@ export default function ManageSpots({ createdSpotId }) {
                   {isCreateSpotOpen && (
                     <CreateSpotForm
                       open={openCreateSpotModal}
-                      // TEMPORARY DONT ALLOW CREATE SPOT TO CLOSE
                       onClose={() => {
                         setIsCreateSpotOpen(false)
                       }}
@@ -154,8 +153,8 @@ export default function ManageSpots({ createdSpotId }) {
                             {spot.city}, {spot.state}
                           </div>
                           <div>
-                            <i className='star-icon'></i>
-                            {'\u2605'}
+                          <i className="fa-solid fa-star fa-2xs"></i>
+
                             {spot.avgRating ? spot.avgRating : 'New'}
                           </div>
                         </div>
