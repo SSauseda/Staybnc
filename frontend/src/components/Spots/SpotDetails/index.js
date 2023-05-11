@@ -69,8 +69,8 @@ export default function SpotDetails() {
     return (
     <div className="spot-details-container">
         <div className="spot-details">
-            <div className="spot-deatils-header">
-                <h1 className="spot-name">{spot.name}</h1>
+            <div className="spot-details-header">
+                <h1 className="title-spot-name">{spot.name}</h1>
                 <div className="spot-location">
                     {spot.city}, {spot.state}, {spot.country}
                 </div>
@@ -81,7 +81,7 @@ export default function SpotDetails() {
                     src={spotImg.url}
                     key={spotImg.id}
                     alt='primaryImage'
-                    className="primary-image"
+                    className="primary-preview-image"
                     />
                 </div>
                 <div className="other-image-grid">
@@ -95,7 +95,7 @@ export default function SpotDetails() {
                     ))}
                 </div>
             </div>
-            <h2 className="Hosted-text">
+            <h2 className="hosted-text">
                 Hosted by {spot.Owner.firstName} {spot.Owner.lastName}
             </h2>
             <div className="description-container">
@@ -103,12 +103,8 @@ export default function SpotDetails() {
                     {spot.description}
                 </div>
                 <div className="reservation-container">
-
-                
-                <div>
-                    Reservation box
                     <div className="spot-price-box">
-                        <div className="spot-price">
+                        <div className="spot-price-night">
                             ${spot.price}/night
                             <div className="stars-reviews-box">
                                 {Number(spot.avgStarRating) ? (
@@ -151,7 +147,6 @@ export default function SpotDetails() {
                                 Reserve
                             </button>
                         </div>
-                </div>
                 </div>
             </div>
             <div>

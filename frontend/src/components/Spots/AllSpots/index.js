@@ -53,7 +53,7 @@ export default function AllSpots() {
                 </span>
               </p>
               <div className="spot-data">
-              <p className="spot-name">{spot.name}</p>
+              <p className="allSpot-name">{spot.name}</p>
               <p className="price">
                 <div className="spot-price">${spot.price}</div>/night
               </p>

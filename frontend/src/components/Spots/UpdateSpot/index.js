@@ -1,21 +1,19 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from "react";
 import * as spotActions from '../../../store/spots';
-// import { updateSpotThunk } from "../../../store/spots";
-// import { useModal } from "../../../context/Modal";
 import { Redirect, useHistory } from "react-router-dom";
 import './UpdateSpot.css'
 
 
 export default function EditSpotForm() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+
     const sessionUser = useSelector(state => state.session.user);
     const spot = useSelector(state => state.spot.spotDetails);
-    const dispatch = useDispatch();
-    const history = useHistory();
     const preview = spot.SpotImages.find(image => image.preview === true)
     const previewUrl = preview.url
-    // const { closeModal } = useModal();
-    // console.log("SPOT DETIALSSPOTDETAILS", preview)
 
 
     const [name, setName] = useState(spot.name);
@@ -116,7 +114,7 @@ export default function EditSpotForm() {
         }) 
 }
 
-if (!spot) return null; 
+if (!spot) return <div>Loading ... </div>; 
 if (!sessionUser) return <Redirect to={'/'}/>
     
 
