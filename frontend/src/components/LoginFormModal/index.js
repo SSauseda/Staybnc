@@ -24,7 +24,10 @@ const LoginFormModal = () => {
         .then(closeModal)
         .catch(async (res) => {
             const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
+            if (data && data.message) 
+            setErrors(['The provided credentials were invalid.'])
+            setCredential('')
+            setPassword('')
         });
     }
 
@@ -45,31 +48,36 @@ const LoginFormModal = () => {
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <>
+        <h1 className='log-in-header'>Log In</h1>
+        <form className='login-modal-container' onSubmit={handleSubmit}>
             <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
-            <label>
+            <label className='user-login-input'>
                 Username or Email
+            </label>
                 <input 
                 type='text'
+                className='user-email-input'
                 value={credential}
                 onChange={(e) => setCredential(e.target.value)}
                 required
                 />
-            </label>
-            <label>
+            <label className='user-password-input'>
                 Password
+            </label>
                 <input 
                 type='password'
+                className='pass-input'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 />
-            </label>
-            <button type='submit'>Log In</button>
+            <button type='submit' className='submit-login-btn'>Log In</button>
             <button onClick={demoUser} type='submit' className='demoLogin'> Demo User</button>
         </form>
+        </>
     );
 };
 

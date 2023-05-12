@@ -57,6 +57,7 @@ function ProfileButton({ user }) {
     return (
         <>
         <button className ='profile-icon' onClick={openMenu}>
+        <i className="fa fa-bars" /> {" "}  
         <i className="fa-thin fa-user fa"></i>
         </button>
         <ul className={ulClassName} ref={ulRef}>
@@ -66,7 +67,7 @@ function ProfileButton({ user }) {
             {/* <li>{user.firstName} {user.lastName}</li> */}
             <li>{user.email}</li>
             <li>
-            <Link to='/current' className='manage-spots' onClick={closeMenu}>Manage Spots</Link>
+            <Link to='/current' className='manage-spots-btn-text' onClick={closeMenu}>Manage Spots</Link>
             </li>
             <li>
                 <button onClick={logout}>Log Out</button>

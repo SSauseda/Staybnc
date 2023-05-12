@@ -152,7 +152,7 @@ export default function ManageSpots({ createdSpotId }) {
                           <div className='location'>
                             {spot.city}, {spot.state}
                           </div>
-                          <div>
+                          <div className="avgRating-num">
                           <i className="fa-solid fa-star fa-2xs"></i>
 
                             {spot.avgRating ? spot.avgRating : 'New'}
@@ -162,7 +162,7 @@ export default function ManageSpots({ createdSpotId }) {
                         <div className='update-delete-btns'>
                           <button
                             className='update-delete-btn'
-                            onClick={e => handleUpdateSpotClick(e, spot.id)}
+                            onClick={(e) => handleUpdateSpotClick(e, spot.id)}
                           >
                             Update
                           </button>

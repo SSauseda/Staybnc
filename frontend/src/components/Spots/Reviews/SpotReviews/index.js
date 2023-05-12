@@ -1,18 +1,20 @@
 import { spotDetailThunk } from "../../../../store/spots";
 import { getReviewsThunk } from "../../../../store/reviews";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useState } from "react";
 import { deleteReviewThunk } from "../../../../store/reviews";
 import CreateReviewModal from "../CreateReview/CreateReviewModal";
 import DeleteReviewModal from "../CreateReview/DeleteReviewModal";
 import CreateReviewForm from "../CreateReview";
+import './SpotReviews.css'
 
 
 export default function SpotReviews ({ createNewReview }) {
     const reviews = useSelector(state => state.review.allReviews)
     // console.log("TESTREVIEWSTESTREVIEWSTESTREVIEWSTESTREVIEWS" ,reviews)
     const spot = useSelector(state => state.spot.spotDetails)
+    const { spotId } = useParams(); 
     const sessionUser = useSelector(state => state.session.user)
 
     const dispatch = useDispatch();
@@ -34,14 +36,18 @@ export default function SpotReviews ({ createNewReview }) {
         setDeleteModalOpen(true)
       }
     
-      const handleDeleteConfirm = reviewId => {
+      const handleDeleteConfirm = async () => {
         if (reviewToDelete) {
-          dispatch(deleteReviewThunk(reviewToDelete))
+          await dispatch(deleteReviewThunk(reviewToDelete))
+          await dispatch(getReviewsThunk(spotId))
           setReviewToDelete(null)
+          spot.numReviews --
+          
         }
         setDeleteModalOpen(false)
-        history.push(`/`)
       }
+
+      // console.log("TESTTESTTEST", typeof spot.numReviews)
     
       const handleDeleteCancel = () => {
         setReviewToDelete(null)
@@ -55,15 +61,15 @@ export default function SpotReviews ({ createNewReview }) {
     return (
         <div>
           <div className='reviews-header'>
-            <h1 className='stars-rating'>
+            <p className='stars-rating'>
               ★
               <span className='avg-rating'>
                 {Number(spot.avgStarRating) ? Number(spot.avgStarRating).toFixed(1) : 'New'}
               </span>
-              {reviews.length > 0 && <span className='dot'></span>}
-            </h1>
+              {reviews.length > 0 && <span className='review-dot'></span>}
+            </p>
             {reviews.length > 0 && (
-              <h1 className='num-reviews'>{spot.numReviews} Reviews </h1>
+              <p className='reviews-total'>{spot.numReviews} Reviews </p>
             )}
           </div>
           {sessionUser &&
@@ -78,6 +84,7 @@ export default function SpotReviews ({ createNewReview }) {
           {reviews.length > 0 ? (
             <ul className='reviews-container'>
               {reviews.map(review => {
+              console.log("REVIEWS", reviews)
                 const date = new Date(review.updatedAt).toLocaleDateString(
                   'en-US',
                   {
@@ -88,10 +95,9 @@ export default function SpotReviews ({ createNewReview }) {
     
                 return (
                   <div className='review-container'>
-                    <div className='container' key={review.id}>
+                    <div className='user-review-container' key={review.id}>
                       <h3 className='review-user'>{review.User.firstName}</h3>
                       <p className='review-date'>{date}</p>
-    
                       <div className='desc'>{review.review}</div>
                     </div>
                     {sessionUser && sessionUser.id === review.userId && (
@@ -109,7 +115,7 @@ export default function SpotReviews ({ createNewReview }) {
           ) : (
             sessionUser &&
             sessionUser.id !== spot.Owner.id && (
-              <button>Be the first to post a Review!</button>
+              <p>Be the first to post a Review!</p>
             )
           )}
           <CreateReviewModal
@@ -136,5 +142,4 @@ export default function SpotReviews ({ createNewReview }) {
           )}
         </div>
       )
-
 }

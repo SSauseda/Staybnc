@@ -1,32 +1,30 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from "react";
 import * as spotActions from '../../../store/spots';
-// import { updateSpotThunk } from "../../../store/spots";
-// import { useModal } from "../../../context/Modal";
 import { Redirect, useHistory } from "react-router-dom";
 import './UpdateSpot.css'
 
 
 export default function EditSpotForm() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
     const sessionUser = useSelector(state => state.session.user);
     const spot = useSelector(state => state.spot.spotDetails);
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const preview = spot.SpotImages.find(image => image.preview === true)
-    const previewUrl = preview.url
-    // const { closeModal } = useModal();
-    // console.log("SPOT DETIALSSPOTDETAILS", preview)
+    const preview = spot?.SpotImages?.find(image => image.preview)
+    const previewUrl = preview?.url
+    
 
 
-    const [name, setName] = useState(spot.name);
-    const [description, setDescription] = useState(spot.description);
-    const [price, setPrice] = useState(spot.price);
-    const [address, setAddress] = useState(spot.address);
-    const [city, setCity] = useState(spot.city);
-    const [state, setState] = useState(spot.state);
-    const [country, setCountry] = useState(spot.country);
-    const [lat, setLat] = useState(spot.lat);
-    const [lng, setLng] = useState(spot.lng);
+    const [name, setName] = useState(spot?.name);
+    const [description, setDescription] = useState(spot?.description);
+    const [price, setPrice] = useState(spot?.price);
+    const [address, setAddress] = useState(spot?.address);
+    const [city, setCity] = useState(spot?.city);
+    const [state, setState] = useState(spot?.state);
+    const [country, setCountry] = useState(spot?.country);
+    const [lat, setLat] = useState(spot?.lat);
+    const [lng, setLng] = useState(spot?.lng);
     const [imageURL, setImageURL] = useState(previewUrl);
     const [prevImage1, setPrevImage1] = useState('');
     const [prevImage2, setPrevImage2] = useState('');
@@ -106,9 +104,9 @@ export default function EditSpotForm() {
                 images
             )
         )
-        .then(spot => {
+        .then(updatedSpotData => {
             // closeModal();
-            history.push(`/spots/${spot.id}`)
+            history.push(`/spots/${updatedSpotData.id}`)
         })
         .catch(async res => {
             const data = await res.json();
@@ -116,7 +114,7 @@ export default function EditSpotForm() {
         }) 
 }
 
-if (!spot) return null; 
+// if (!spot) return <div>Loading ... </div>; 
 if (!sessionUser) return <Redirect to={'/'}/>
     
 

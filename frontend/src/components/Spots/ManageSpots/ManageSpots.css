@@ -53,6 +53,10 @@
     /* width: 50px; */
 }
 
+.avgRating-num {
+    font-size: 25px;
+}
+
 .manage-spots-price {
     font-size: 16px;
     color: #484848;
@@ -69,7 +73,7 @@
 .update-delete-btn {
     cursor: pointer;
     padding: 10px 20px;
-    background-color: #ff385c;
+    background-color: #ff5a5f;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -77,7 +81,7 @@
 }
 
 .update-delete-btn:hover {
-    background-color: #cc2f4d;
+    background-color: #ff3b40;
 }
 
 .manage-spots-heading {
@@ -96,7 +100,7 @@
 .create-spot-btn {
     cursor: pointer;
     padding: 10px 20px;
-    background-color: #ff385c;
+    background-color: #ff5a5f;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -104,5 +108,5 @@
 }
 
 .create-spot-btn:hover {
-    background-color: #cc2f4d;
+    background-color: #ff3b40;
 }
