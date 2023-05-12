@@ -49,7 +49,7 @@ const LoginFormModal = () => {
 
     return (
         <>
-        <h1>Log In</h1>
+        <h1 className='log-in-header'>Log In</h1>
         <form className='login-modal-container' onSubmit={handleSubmit}>
             <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}

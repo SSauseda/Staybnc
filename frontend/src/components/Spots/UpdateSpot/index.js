@@ -9,23 +9,23 @@ export default function EditSpotForm() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-
     const sessionUser = useSelector(state => state.session.user);
     const spot = useSelector(state => state.spot.spotDetails);
-    const preview = spot.SpotImages.find(image => image.preview)
-    const previewUrl = preview.url
+    const preview = spot?.SpotImages?.find(image => image.preview)
+    const previewUrl = preview?.url
+    
 
 
-    const [name, setName] = useState(spot.name);
-    const [description, setDescription] = useState(spot.description);
-    const [price, setPrice] = useState(spot.price);
-    const [address, setAddress] = useState(spot.address);
-    const [city, setCity] = useState(spot.city);
-    const [state, setState] = useState(spot.state);
-    const [country, setCountry] = useState(spot.country);
-    const [lat, setLat] = useState(spot.lat);
-    const [lng, setLng] = useState(spot.lng);
-    const [imageURL, setImageURL] = useState('');
+    const [name, setName] = useState(spot?.name);
+    const [description, setDescription] = useState(spot?.description);
+    const [price, setPrice] = useState(spot?.price);
+    const [address, setAddress] = useState(spot?.address);
+    const [city, setCity] = useState(spot?.city);
+    const [state, setState] = useState(spot?.state);
+    const [country, setCountry] = useState(spot?.country);
+    const [lat, setLat] = useState(spot?.lat);
+    const [lng, setLng] = useState(spot?.lng);
+    const [imageURL, setImageURL] = useState(previewUrl);
     const [prevImage1, setPrevImage1] = useState('');
     const [prevImage2, setPrevImage2] = useState('');
     const [prevImage3, setPrevImage3] = useState('');
@@ -104,9 +104,9 @@ export default function EditSpotForm() {
                 images
             )
         )
-        .then(spot => {
+        .then(updatedSpotData => {
             // closeModal();
-            history.push(`/spots/${spot.id}`)
+            history.push(`/spots/${updatedSpotData.id}`)
         })
         .catch(async res => {
             const data = await res.json();
@@ -114,7 +114,7 @@ export default function EditSpotForm() {
         }) 
 }
 
-if (!spot) return <div>Loading ... </div>; 
+// if (!spot) return <div>Loading ... </div>; 
 if (!sessionUser) return <Redirect to={'/'}/>
     
 

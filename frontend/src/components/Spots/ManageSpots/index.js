@@ -162,7 +162,7 @@ export default function ManageSpots({ createdSpotId }) {
                         <div className='update-delete-btns'>
                           <button
                             className='update-delete-btn'
-                            onClick={e => handleUpdateSpotClick(e, spot.id)}
+                            onClick={(e) => handleUpdateSpotClick(e, spot.id)}
                           >
                             Update
                           </button>

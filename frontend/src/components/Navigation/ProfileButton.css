@@ -23,8 +23,8 @@
     width: 100%;
 }
 
-.manage-spots {
-    font-size: 40px;
+.manage-spots-btn-text {
+    font-size: 15px;
 }
 
 .logIn button{
@@ -38,4 +38,8 @@
 
 .profile-icon:hover {
     box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+}
+
+li {
+    list-style-type: none;
 }

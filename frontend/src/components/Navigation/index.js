@@ -18,65 +18,65 @@ function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
-    const logout = (e) => {
-        e.preventDefault();
-        dispatch(sessionActions.logout());
-    };
+    // const logout = (e) => {
+    //     e.preventDefault();
+    //     dispatch(sessionActions.logout());
+    // };
 
-    let sessionLinks;
-    if (sessionUser) {
-        sessionLinks = (
-            <li>
-                <ProfileButton user={sessionUser} />
-                <button onClick={logout}>Log Out</button>
-            </li>
-        );
-    } else {
-        sessionLinks = (
-            <li>
-                <OpenModalButton
-                buttonText='Log In'
-                modalComponent={<LoginFormModal />}
-                />
-                <OpenModalButton 
-                buttonText='Sign Up'
-                modalComponent={<SignupFormModal />}
-                />
-            </li>
-        );
-    }
+    // let sessionLinks;
+    // if (sessionUser) {
+    //     sessionLinks = (
+    //         <li>
+    //             <ProfileButton user={sessionUser} />
+    //             <button onClick={logout}>Log Out</button>
+    //         </li>
+    //     );
+    // } else {
+    //     sessionLinks = (
+    //         <li>
+    //             <OpenModalButton
+    //             buttonText='Log In'
+    //             modalComponent={<LoginFormModal />}
+    //             />
+    //             <OpenModalButton 
+    //             buttonText='Sign Up'
+    //             modalComponent={<SignupFormModal />}
+    //             />
+    //         </li>
+    //     );
+    // }
 
     return (
-        <ul className="container">
-            <li>
+        <ul className="navigation-bar-container">
+            <ui>
                 <NavLink exact to='/'>
                   <Logo className='logo' alt='logo'></Logo>
                   </NavLink>
-            </li>
+            </ui>
             {sessionUser ? (
-              <div className="top-right">
-                  <NavLink exact to='/spots/new'>
+              <button className="create-spot-nav">
+                  <NavLink style={{ textDecoration: 'none', color: '#fff'}} exact to='/spots/new'>
                     Create a New Spot
                 <OpenModalMenuItem
                   modalComponent={<CreateSpotForm />}
                   /> 
                   </NavLink>
-              </div>
+              </button>
             ) : (
               <div>
-                <div className="top-right">
+                <button className="login-to-create-spot-nav">
                   <OpenModalMenuItem
                     className="bnbButton"
                     itemText="Log In to Create a New Spot"
                     modalComponent={<LoginFormModal />}
                   />
-                </div>
+                </button>
               </div>
             )}
             {isLoaded && (
-                <li>
+                <ul className="profile-btn-position">
                     <ProfileButton user={sessionUser} />
-                </li>
+                </ul>
             )}
         </ul>
     );

@@ -46,8 +46,8 @@ const SignupFormModal = () => {
     };
 
     return (
-        <>
-      <h1>Sign Up</h1>
+      <div>
+      <h1 className='sign-up-header'>Sign Up</h1>
       <div className='signup-errors'>
         {errors && (
           <ul>
@@ -128,7 +128,7 @@ const SignupFormModal = () => {
         </div>
         <button type="submit" className='signup-form-button'>Sign Up</button>
       </form>
-    </> 
+    </div> 
     );
 };
 

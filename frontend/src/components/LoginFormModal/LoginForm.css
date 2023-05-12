@@ -65,3 +65,9 @@ form > ul {
 .demoLogin:hover {
     background-color: #ccc;
 }
+
+.log-in-header {
+    text-align: center;
+    color: #484848;
+    margin-bottom: 20px;
+}
