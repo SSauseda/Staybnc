@@ -14,10 +14,10 @@ export default function SpotDetails() {
     const { spotId } = useParams();
     // const history = useHistory();
     const [isLoaded, setIsLoaded] = useState(false);
-    const [review, setReview] = useState('')
-    const [stars, setStars] = useState('')
+    // const [review, setReview] = useState('')
+    // const [stars, setStars] = useState('')
 
-    const sessionUser = useSelector((state) => state.session.user);
+    // const sessionUser = useSelector((state) => state.session.user);
 
     const spot = useSelector((state) => state.spot.spotDetails);
     // console.log("SPOTPSOTPSOT", spot)

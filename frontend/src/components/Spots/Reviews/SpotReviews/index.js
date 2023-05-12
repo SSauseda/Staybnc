@@ -42,6 +42,7 @@ export default function SpotReviews ({ createNewReview }) {
           await dispatch(getReviewsThunk(spotId))
           setReviewToDelete(null)
           spot.numReviews --
+          
         }
         setDeleteModalOpen(false)
       }
@@ -83,6 +84,7 @@ export default function SpotReviews ({ createNewReview }) {
           {reviews.length > 0 ? (
             <ul className='reviews-container'>
               {reviews.map(review => {
+              console.log("REVIEWS", reviews)
                 const date = new Date(review.updatedAt).toLocaleDateString(
                   'en-US',
                   {
