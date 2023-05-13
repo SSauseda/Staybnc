@@ -30,7 +30,7 @@ function App() {
         <AllSpots />
       </Route>
 
-      <Route path={'/spots/new'}>
+      <Route exact path={'/spots/new'}>
         <CreateSpotForm />
       </Route>
 
@@ -38,7 +38,7 @@ function App() {
         <SpotDetails />
       </Route>
 
-      <Route path={'/current'}>
+      <Route exact path={'/current'}>
         <ManageSpots />
       </Route>
 

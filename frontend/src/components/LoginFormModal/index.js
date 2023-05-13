@@ -12,6 +12,7 @@ const LoginFormModal = () => {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
+    const [buttonDisabled, setButtonDisabled] = useState(true);
 
     // if (sessionUser) return (
     //     <Redirect to='/' />
@@ -46,6 +47,16 @@ const LoginFormModal = () => {
         })
     }
 
+    const handleCredentialChange = (e) => {
+        setCredential(e.target.value);
+        setButtonDisabled(e.target.value.length < 4 || password.length < 6);
+    }
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value)
+        setButtonDisabled(credential.length < 4 || e.target.value.length < 6);
+    }
+
 
     return (
         <>
@@ -61,7 +72,7 @@ const LoginFormModal = () => {
                 type='text'
                 className='user-email-input'
                 value={credential}
-                onChange={(e) => setCredential(e.target.value)}
+                onChange={handleCredentialChange}
                 required
                 />
             <label className='user-password-input'>
@@ -71,10 +82,10 @@ const LoginFormModal = () => {
                 type='password'
                 className='pass-input'
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
                 required
                 />
-            <button type='submit' className='submit-login-btn'>Log In</button>
+            <button type='submit' className='submit-login-btn' disabled={buttonDisabled}>Log In</button>
             <button onClick={demoUser} type='submit' className='demoLogin'> Demo User</button>
         </form>
         </>
