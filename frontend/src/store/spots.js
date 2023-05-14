@@ -1,12 +1,12 @@
 import { csrfFetch } from './csrf';
 
 // Action Types
-const GET_SPOTS = 'spots/GET_SPOTS';
-const CREATE_SPOT = 'spots/CREATE_SPOT';
-const EDIT_SPOT = 'spots/UPDATE_SPOT';
-const DELETE_SPOT = 'spots/DELETE_SPOT';
-const SPOT_DETAILS = 'spots/SPOT_DETAILS';
-const USERS_SPOTS = 'spots/USERS_SPOTS';
+const GET_SPOTS = 'spots/getSpots';
+const CREATE_SPOT = 'spots/createSpot';
+const EDIT_SPOT = 'spots/updateSpot';
+const DELETE_SPOT = 'spots/deleteSpot';
+const SPOT_DETAILS = 'spots/getSpotDetail';
+const USERS_SPOTS = 'spots/getUserSpots';
 
 
 // Action Creators
@@ -26,9 +26,12 @@ const deleteSpot = (deleteSpot) => ({
     deleteSpot
 })
 
-const updateSpot = (editSpot) => ({
+const updateSpot = (spotId, spotData) => ({
     type: EDIT_SPOT,
-    editSpot
+    spot: {
+        id: spotId,
+        ...spotData
+    }
 })
 
 const getSpotDetail = (spot) => ({
@@ -78,7 +81,7 @@ export const createSpotThunk = (newSpot, previewImage) => async dispatch => {
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(newSpot),
     });
-console.log("TEST", response)
+// console.log("TEST", response)
     if (response.ok) {
         const createdSpot = await response.json();
         const imageResponse = await csrfFetch(`/api/spots/${createdSpot.id}/images`, {
@@ -98,15 +101,15 @@ console.log("TEST", response)
     }
 };
 
-export const updateSpotThunk = (spotId, updatedSpotDate) => async dispatch => {
+export const updateSpotThunk = (spotId, updatedSpotData) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedSpotDate),
+        body: JSON.stringify(updatedSpotData),
     });
 
     if (response.ok) {
-        const spotData = response.json();
+        const spotData = await response.json();
         dispatch(updateSpot(spotId, spotData));
         return spotData;
     }

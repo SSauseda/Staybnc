@@ -59,8 +59,14 @@ export default function CreateSpotForm() {
         if (!lat) {
             errorsArray.push('Latitude is required')
         }
+        if (lat && isNaN(lat) === true) {
+            errorsArray.push('Latitude must be a number')
+        }
         if (!lng) {
             errorsArray.push('Longitude is required')
+        }
+        if (lng && isNaN(lng) === true) {
+            errorsArray.push('Longitude must be a number')
         }
         if (!description || description.length < 30) {
             errorsArray.push('Description needs a minimum of 30 characters')
@@ -74,19 +80,19 @@ export default function CreateSpotForm() {
         if (!imageURL) {
             errorsArray.push('Preview image is required')
         }
-        if (!imageURL.endsWith('.jpg') && !imageURL.endsWith('.png') && !imageURL.endsWith('.jpeg')) {
-            errorsArray.push('Image URL must end in .pgn, .jpg, or .jpeg')
+        if (imageURL && (!imageURL.endsWith('.jpg') || !imageURL.endsWith('.png') || !imageURL.endsWith('.jpeg'))) {
+            errorsArray.push('invalid previewImage')
         }
-        if (prevImage1 && !prevImage1.endsWith('.jpg') && !prevImage1.endsWith('.png') && !prevImage1.endsWith('.jpeg')) {
+        if (prevImage1 && (!prevImage1.endsWith('.jpg') && !prevImage1.endsWith('.png') && !prevImage1.endsWith('.jpeg'))) {
             errorsArray.push('invalid image1')
         }
-        if (prevImage2 && !prevImage2.endsWith('.jpg') && !prevImage2.endsWith('.png') && !prevImage2.endsWith('.jpeg')) {
+        if (prevImage2 && (!prevImage2.endsWith('.jpg') && !prevImage2.endsWith('.png') && !prevImage2.endsWith('.jpeg'))) {
             errorsArray.push('invalid image2')
         }
-        if (prevImage3 && !prevImage3.endsWith('.jpg') && !prevImage3.endsWith('.png') && !prevImage3.endsWith('.jpeg')) {
+        if (prevImage3 && (!prevImage3.endsWith('.jpg') && !prevImage3.endsWith('.png') && !prevImage3.endsWith('.jpeg'))) {
             errorsArray.push('invalid image3')
         }
-        if (prevImage4 && !prevImage4.endsWith('.jpg') && !prevImage4.endsWith('.png') && !prevImage4.endsWith('.jpeg')) {
+        if (prevImage4 && (!prevImage4.endsWith('.jpg') && !prevImage4.endsWith('.png') && !prevImage4.endsWith('.jpeg'))) {
             errorsArray.push('invalid image4')
         }
 
@@ -201,6 +207,9 @@ export default function CreateSpotForm() {
                                     />
                                     {errors.includes('Latitude is required') && (
                                         <span className="errors-message">Latitude is required</span>
+                                    )},
+                                    {errors.includes('Latitude must be a number') && (
+                                        <span className="errors-message">Latitude must be a number</span>
                                     )}
                                     <label htmlFor="lng" className="lng">Longitude</label>
                                     <input
@@ -213,6 +222,9 @@ export default function CreateSpotForm() {
                                     />
                                     {errors.includes('Longitude is required') && (
                                         <span className="errors-message">Longitude is required</span>
+                                    )},
+                                    {errors.includes('Longitude must be a number') && (
+                                        <span className="errors-message">Longitude must be a number</span>
                                     )}
                                 </div>
                             </div>
@@ -286,8 +298,10 @@ export default function CreateSpotForm() {
                             />
                             {errors.includes('Preview image is required') && (
                                 <span className="errors-message">Preview image is required</span>
+                            )},
+                            {errors.includes('invalid previewImage') && (
+                                <span className="errors-message">Preview image must end in .pgn, .jpg, or .jpeg</span>
                             )}
-
                             <input
                             className="img-input"
                             type='url'

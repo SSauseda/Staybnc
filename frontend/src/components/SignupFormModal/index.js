@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
@@ -15,6 +15,7 @@ const SignupFormModal = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState([]);
+    const [buttonDisabled, setButtonDisabled] = useState(true);
     const { closeModal } = useModal();
 
     // if (sessionUser) return <Redirect to='/' />;
@@ -45,6 +46,28 @@ const SignupFormModal = () => {
         });
     };
 
+    const validateForm = () => {
+      if (
+        !email ||
+        !username ||
+        !firstName ||
+        !lastName ||
+        !password ||
+        !confirmPassword || 
+        username.length < 4 || 
+        password.length < 6 ||
+        password !== confirmPassword
+      ) {
+        setButtonDisabled(true);
+      } else {
+        setButtonDisabled(false);
+      }
+    }
+
+    useEffect(() => {
+      validateForm();
+    }, [email, username, firstName, lastName, password, confirmPassword])
+
     return (
       <div>
       <h1 className='sign-up-header'>Sign Up</h1>
@@ -66,7 +89,8 @@ const SignupFormModal = () => {
             className='user-email'
             type="text"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {setEmail(e.target.value) 
+            validateForm();}}
             required
           />
 
@@ -77,7 +101,8 @@ const SignupFormModal = () => {
           className='user-username-input'
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => {setUsername(e.target.value)
+            validateForm()}}
             required
           />
 
@@ -88,7 +113,8 @@ const SignupFormModal = () => {
           className='user-first-input'
             type="text"
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={(e) => {setFirstName(e.target.value)
+            validateForm()}}
             required
           />
 
@@ -99,7 +125,8 @@ const SignupFormModal = () => {
           className='user-last-input'
             type="text"
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={(e) => {setLastName(e.target.value)
+            validateForm()}}
             required
           />
 
@@ -110,7 +137,8 @@ const SignupFormModal = () => {
           className='user-password-input'
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {setPassword(e.target.value)
+            validateForm()}}
             required
           />
 
@@ -121,12 +149,13 @@ const SignupFormModal = () => {
           className='user-confirm-input'
             type="password"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => {setConfirmPassword(e.target.value)
+            validateForm()}}
             required
           />
 
         </div>
-        <button type="submit" className='signup-form-button'>Sign Up</button>
+        <button type="submit" className='signup-form-button' disabled={buttonDisabled}>Sign Up</button>
       </form>
     </div> 
     );
