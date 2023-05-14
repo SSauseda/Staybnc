@@ -27,12 +27,12 @@ export default function EditSpotForm() {
     const [lat, setLat] = useState(spot?.lat);
     const [lng, setLng] = useState(spot?.lng);
     const [imageURL, setImageURL] = useState(previewUrl);
+    const [errors, setErrors] = useState([]);
     const [prevImage1, setPrevImage1] = useState('');
     const [prevImage2, setPrevImage2] = useState('');
     const [prevImage3, setPrevImage3] = useState('');
     const [prevImage4, setPrevImage4] = useState('');
-    const [errors, setErrors] = useState([]);
-    const [hasSubmitted, setHasSubmitted] = useState(false);
+    // const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -79,27 +79,14 @@ export default function EditSpotForm() {
         if (!imageURL) {
             errorsArray.push('Preview image is required')
         }
-        if (imageURL && (!imageURL.endsWith('.jpg') || !imageURL.endsWith('.png') || !imageURL.endsWith('.jpeg'))) {
-            errorsArray.push('invalid previewImage')
-        }
-        if (prevImage1 && (!prevImage1.endsWith('.jpg') && !prevImage1.endsWith('.png') && !prevImage1.endsWith('.jpeg'))) {
-            errorsArray.push('invalid image1')
-        }
-        if (prevImage2 && (!prevImage2.endsWith('.jpg') && !prevImage2.endsWith('.png') && !prevImage2.endsWith('.jpeg'))) {
-            errorsArray.push('invalid image2')
-        }
-        if (prevImage3 && (!prevImage3.endsWith('.jpg') && !prevImage3.endsWith('.png') && !prevImage3.endsWith('.jpeg'))) {
-            errorsArray.push('invalid image3')
-        }
-        if (prevImage4 && (!prevImage4.endsWith('.jpg') && !prevImage4.endsWith('.png') && !prevImage4.endsWith('.jpeg'))) {
-            errorsArray.push('invalid image4')
-        }
 
         setErrors(errorsArray);
+        console.log("ERRORS", typeof errors)
 
         if (errorsArray.length === 0) {
             dispatch(
-                spotActions.updateSpotThunk({
+                spotActions.updateSpotThunk(
+                    spot.id,{
                     name,
                     description,
                     price,
@@ -116,8 +103,8 @@ export default function EditSpotForm() {
                 },
                 images
                 )
-            ).then((spot) => {
-                history.push(`/spots/${spot.id}`);
+            ).then((updatedSpotData) => {
+                history.push(`/spots/${updatedSpotData.id}`);
             })
             .catch(async (res) => {
                 const data = await res.json();
@@ -130,86 +117,6 @@ export default function EditSpotForm() {
         dispatch(spotActions.spotDetailThunk(spotId));
     }, [dispatch, spotId])
 
-    // useEffect(() => {
-    //     if (hasSubmitted) {
-    //         let validationErrors = {}
-
-    //         if (!country) validationErrors.country = 'Country is required'
-    //         if (!address) validationErrors.address = 'Address is required'
-    //         if (!city) validationErrors.city = 'City is required'
-    //         if (!state) validationErrors.state = 'State is required'
-    //         if (description.length < 30) validationErrors.description = 'Description needs a minimum of 30 characters'
-    //         if (!name) validationErrors.name = 'Name is required'
-    //         if (!price) validationErrors.price = 'Price is required'
-    //         if (!imageURL) validationErrors.imageURL = 'Preview image is required'
-    //         if ( imageURL &&
-    //             !/\.(png|jpg|jpeg)$/i.test(imageURL.slice(imageURL.lastIndexOf('.')))
-    //           ) validationErrors.previewImage = 'Image URL must end in .png, .jpg, or .jpeg'
-    //         if (prevImage1 && !/\.(png|jpg|jpeg)$/i.test(prevImage1.slice(prevImage1.lastIndexOf('.')))
-    //           ) validationErrors.image1 = 'Image URL must end in .png, .jpg, or .jpeg'
-    //         if (prevImage2 && !/\.(png|jpg|jpeg)$/i.test(prevImage2.slice(prevImage2.lastIndexOf('.')))
-    //           ) validationErrors.image1 = 'Image URL must end in .png, .jpg, or .jpeg'
-    //         if (prevImage3 && !/\.(png|jpg|jpeg)$/i.test(prevImage3.slice(prevImage3.lastIndexOf('.')))
-    //           ) validationErrors.image1 = 'Image URL must end in .png, .jpg, or .jpeg'
-    //         if (prevImage4 && !/\.(png|jpg|jpeg)$/i.test(prevImage4.slice(prevImage4.lastIndexOf('.')))
-    //           ) validationErrors.image1 = 'Image URL must end in .png, .jpg, or .jpeg'
-
-    //           setErrors(validationErrors)
-    //     }
-    // }, [
-    //     hasSubmitted,
-    //     country,
-    //     address,
-    //     city,
-    //     state,
-    //     description,
-    //     name,
-    //     price,
-    //     imageURL,
-    //     prevImage1,
-    //     prevImage2,
-    //     prevImage3,
-    //     prevImage4
-    // ])
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     setHasSubmitted(true)
-
-    //     if (Object.keys(errors).length > 0) return
-
-    //     const images = [prevImage1, prevImage2, prevImage3, prevImage4].filter(Boolean).map((url) => ({
-    //         url,
-    //         preview: false
-    //     }))
-
-    //     return await dispatch(
-    //         spotActions.updateSpotThunk(spot.id, {
-    //             name,
-    //             description,
-    //             price,
-    //             address,
-    //             city,
-    //             state,
-    //             country,
-    //             lat,
-    //             lng,
-    //         }, {
-    //             url: imageURL,
-    //             preview: true
-    //         },
-    //             images
-    //         )
-    //     )
-    //     .then(updatedSpotData => {
-    //         // closeModal();
-    //         history.push(`/spots/${updatedSpotData.id}`)
-    //     })
-    //     .catch(async res => {
-    //         const data = await res.json();
-    //         if (data && data.errors) setErrors(data.errors);
-    //     }) 
-// }
 
 if (!spot) return null;
 if (!sessionUser) return <Redirect to={'/'}/>
@@ -219,7 +126,7 @@ if (!sessionUser) return <Redirect to={'/'}/>
         <div className="create-spot-container">
         <div className="form-container">
             <div className="form">
-                <form noValidate className="new-spot" onSubmit={handleSubmit}>
+                <form className="new-spot" onSubmit={handleSubmit}>
                     <div className="location-section">
                         <h1 className="title">Update your Spot</h1>
                         <div className="location-info">
@@ -382,9 +289,6 @@ if (!sessionUser) return <Redirect to={'/'}/>
                         />
                         {errors.includes('Preview image is required') && (
                             <span className="errors-message">Preview image is required</span>
-                        )},
-                        {errors.includes('invalid previewImage') && (
-                            <span className="errors-message">Preview image must end in .pgn, .jpg, or .jpeg</span>
                         )}
                         <input
                         className="img-input"
@@ -394,9 +298,9 @@ if (!sessionUser) return <Redirect to={'/'}/>
                         placeholder="Image URL"
                         required
                         />
-                        {errors.includes('invalid image1') && (
+                        {/* {errors.includes('invalid image1') && (
                             <span className="errors-message">Image URL must end in .pgn, .jpg, or .jpeg</span>
-                        )}
+                        )} */}
                         <input
                         className="img-input"
                         type='url'
@@ -405,9 +309,9 @@ if (!sessionUser) return <Redirect to={'/'}/>
                         placeholder="Image URL"
                         required
                         />
-                        {errors.includes('invalid image2') && (
+                        {/* {errors.includes('invalid image2') && (
                             <span className="errors-message">Image URL must end in .pgn, .jpg, or .jpeg</span>
-                        )}
+                        )} */}
                         <input
                         className="img-input"
                         type='url'
@@ -416,9 +320,9 @@ if (!sessionUser) return <Redirect to={'/'}/>
                         placeholder="Image URL"
                         required
                         />
-                        {errors.includes('invalid image3') && (
+                        {/* {errors.includes('invalid image3') && (
                             <span className="errors-message">Image URL must end in .pgn, .jpg, or .jpeg</span>
-                        )}
+                        )} */}
                         <input
                         className="img-input"
                         type='url'
@@ -427,9 +331,9 @@ if (!sessionUser) return <Redirect to={'/'}/>
                         placeholder="Image URL"
                         required
                         />
-                        {errors.includes('invalid image4') && (
+                        {/* {errors.includes('invalid image4') && (
                             <span className="errors-message">Image URL must end in .pgn, .jpg, or .jpeg</span>
-                        )}
+                        )} */}
                     </div>
                     <button className="submit-create-spot-button" type="submit" onClick={handleSubmit}>Update Spot</button>
                 </form>
