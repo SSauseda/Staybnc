@@ -80,21 +80,21 @@ export default function CreateSpotForm() {
         if (!imageURL) {
             errorsArray.push('Preview image is required')
         }
-        if (imageURL && (!imageURL.endsWith('.jpg') || !imageURL.endsWith('.png') || !imageURL.endsWith('.jpeg'))) {
-            errorsArray.push('invalid previewImage')
-        }
-        if (prevImage1 && (!prevImage1.endsWith('.jpg') && !prevImage1.endsWith('.png') && !prevImage1.endsWith('.jpeg'))) {
-            errorsArray.push('invalid image1')
-        }
-        if (prevImage2 && (!prevImage2.endsWith('.jpg') && !prevImage2.endsWith('.png') && !prevImage2.endsWith('.jpeg'))) {
-            errorsArray.push('invalid image2')
-        }
-        if (prevImage3 && (!prevImage3.endsWith('.jpg') && !prevImage3.endsWith('.png') && !prevImage3.endsWith('.jpeg'))) {
-            errorsArray.push('invalid image3')
-        }
-        if (prevImage4 && (!prevImage4.endsWith('.jpg') && !prevImage4.endsWith('.png') && !prevImage4.endsWith('.jpeg'))) {
-            errorsArray.push('invalid image4')
-        }
+        // if (imageURL && (!imageURL.endsWith('.jpg') || !imageURL.endsWith('.png') || !imageURL.endsWith('.jpeg'))) {
+        //     errorsArray.push('invalid previewImage')
+        // }
+        // if (prevImage1 && (!prevImage1.endsWith('.jpg') && !prevImage1.endsWith('.png') && !prevImage1.endsWith('.jpeg'))) {
+        //     errorsArray.push('invalid image1')
+        // }
+        // if (prevImage2 && (!prevImage2.endsWith('.jpg') && !prevImage2.endsWith('.png') && !prevImage2.endsWith('.jpeg'))) {
+        //     errorsArray.push('invalid image2')
+        // }
+        // if (prevImage3 && (!prevImage3.endsWith('.jpg') && !prevImage3.endsWith('.png') && !prevImage3.endsWith('.jpeg'))) {
+        //     errorsArray.push('invalid image3')
+        // }
+        // if (prevImage4 && (!prevImage4.endsWith('.jpg') && !prevImage4.endsWith('.png') && !prevImage4.endsWith('.jpeg'))) {
+        //     errorsArray.push('invalid image4')
+        // }
 
         setErrors(errorsArray);
 
@@ -298,9 +298,6 @@ export default function CreateSpotForm() {
                             />
                             {errors.includes('Preview image is required') && (
                                 <span className="errors-message">Preview image is required</span>
-                            )},
-                            {errors.includes('invalid previewImage') && (
-                                <span className="errors-message">Preview image must end in .pgn, .jpg, or .jpeg</span>
                             )}
                             <input
                             className="img-input"
