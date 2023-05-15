@@ -76,6 +76,9 @@ export default function EditSpotForm() {
         if (!price) {
             errorsArray.push('Price is required')
         }
+        if (price && isNaN(price) === true) {
+            errorsArray.push('Price must be a number')
+        }
         if (!imageURL) {
             errorsArray.push('Preview image is required')
         }
@@ -272,6 +275,9 @@ if (!sessionUser) return <Redirect to={'/'}/>
                             />
                             {errors.includes('Price is required') && (
                                 <span className="errors-message">Price is required</span>
+                            )},
+                            {errors.includes('Price must be a number') && (
+                                <span className="errors-message">Price must be a number</span>
                             )}
                         </div>
                     </div>
