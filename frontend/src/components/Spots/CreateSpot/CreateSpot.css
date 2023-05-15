@@ -116,8 +116,17 @@ textarea {
 
 .price p{
     font-size: 24px;
+
 }
 
+.price {
+    display: flex;
+    /* border: 1px solid red; */
+}
+
+.price-input {
+    margin-left: 10px;
+}
 /* .location-section,
 .description-section,
 .create-title-section,

@@ -110,14 +110,14 @@ export default function SpotDetails() {
                                 {Number(spot.avgStarRating) ? (
                                     <>
                                     <div className="spot-stars">
-                                        <p>★</p>
+                                        <p className="star-emblem">★</p>
                                         <div>{Number(spot.avgStarRating).toFixed(1)}</div>
                                     </div>
                                     </>
                                 ) : (
                                     <>
                                     <div className="spot-stars-new">
-                                        <p>★</p>
+                                        <p className="star-emblem">★</p>
                                         <div className="new-stars">New</div>
                                     </div>
                                     </>

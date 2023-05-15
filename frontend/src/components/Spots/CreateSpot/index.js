@@ -210,7 +210,7 @@ export default function CreateSpotForm() {
                                     />
                                     {errors.includes('Latitude is required') && (
                                         <span className="errors-message">Latitude is required</span>
-                                    )},
+                                    )}
                                     {errors.includes('Latitude must be a number') && (
                                         <span className="errors-message">Latitude must be a number</span>
                                     )}
@@ -225,7 +225,7 @@ export default function CreateSpotForm() {
                                     />
                                     {errors.includes('Longitude is required') && (
                                         <span className="errors-message">Longitude is required</span>
-                                    )},
+                                    )}
                                     {errors.includes('Longitude must be a number') && (
                                         <span className="errors-message">Longitude must be a number</span>
                                     )}
@@ -284,7 +284,7 @@ export default function CreateSpotForm() {
                                 />
                                 {errors.includes('Price is required') && (
                                     <span className="errors-message">Price is required</span>
-                                )},
+                                )}
                                 {errors.includes('Price must be a number') && (
                                     <span className="errors-message">Price must be a number</span>
                                 )}
@@ -311,44 +311,36 @@ export default function CreateSpotForm() {
                             value={prevImage1}
                             onChange={e => setPrevImage1(e.target.value)}
                             placeholder="Image URL"
-                            required
+                            // required
                             />
-                            {errors.includes('invalid image1') && (
-                                <span className="errors-message">Image URL must end in .pgn, .jpg, or .jpeg</span>
-                            )}
+
                             <input
                             className="img-input"
                             type='url'
                             value={prevImage2}
                             onChange={e => setPrevImage2(e.target.value)}
                             placeholder="Image URL"
-                            required
+                            // required
                             />
-                            {errors.includes('invalid image2') && (
-                                <span className="errors-message">Image URL must end in .pgn, .jpg, or .jpeg</span>
-                            )}
+
                             <input
                             className="img-input"
                             type='url'
                             value={prevImage3}
                             onChange={e => setPrevImage3(e.target.value)}
                             placeholder="Image URL"
-                            required
+                            // required
                             />
-                            {errors.includes('invalid image3') && (
-                                <span className="errors-message">Image URL must end in .pgn, .jpg, or .jpeg</span>
-                            )}
+
                             <input
                             className="img-input"
                             type='url'
                             value={prevImage4}
                             onChange={e => setPrevImage4(e.target.value)}
                             placeholder="Image URL"
-                            required
+                            // required
                             />
-                            {errors.includes('invalid image4') && (
-                                <span className="errors-message">Image URL must end in .pgn, .jpg, or .jpeg</span>
-                            )}
+
                         </div>
                         <button className="submit-create-spot-button" type="submit" onClick={handleSubmit}>Create Spot</button>
                     </form>
