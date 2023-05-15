@@ -12,8 +12,8 @@ export default function EditSpotForm() {
     const sessionUser = useSelector(state => state.session.user);
     const spot = useSelector(state => state.spot.spotDetails);
     const { spotId } = useParams();
-    const preview = spot?.SpotImages?.find(image => image.preview)
-    const previewUrl = preview?.url
+    // const preview = spot?.SpotImages?.find(image => image.preview)
+    // const previewUrl = preview?.url
     
 
 
@@ -26,7 +26,7 @@ export default function EditSpotForm() {
     const [country, setCountry] = useState(spot?.country);
     const [lat, setLat] = useState(spot?.lat);
     const [lng, setLng] = useState(spot?.lng);
-    const [imageURL, setImageURL] = useState(previewUrl);
+    const [imageURL, setImageURL] = useState('');
     const [errors, setErrors] = useState([]);
     const [prevImage1, setPrevImage1] = useState('');
     const [prevImage2, setPrevImage2] = useState('');
@@ -79,9 +79,9 @@ export default function EditSpotForm() {
         if (price && isNaN(price) === true) {
             errorsArray.push('Price must be a number')
         }
-        if (!imageURL) {
-            errorsArray.push('Preview image is required')
-        }
+        // if (!imageURL) {
+        //     errorsArray.push('Preview image is required')
+        // }
 
         setErrors(errorsArray);
         console.log("ERRORS", typeof errors)
@@ -201,7 +201,7 @@ if (!sessionUser) return <Redirect to={'/'}/>
                                 />
                                 {errors.includes('Latitude is required') && (
                                     <span className="errors-message">Latitude is required</span>
-                                )},
+                                )}
                                 {errors.includes('Latitude must be a number') && (
                                     <span className="errors-message">Latitude must be a number</span>
                                 )}
@@ -216,7 +216,7 @@ if (!sessionUser) return <Redirect to={'/'}/>
                                 />
                                 {errors.includes('Longitude is required') && (
                                     <span className="errors-message">Longitude is required</span>
-                                )},
+                                )}
                                 {errors.includes('Longitude must be a number') && (
                                     <span className="errors-message">Longitude must be a number</span>
                                 )}
@@ -275,7 +275,7 @@ if (!sessionUser) return <Redirect to={'/'}/>
                             />
                             {errors.includes('Price is required') && (
                                 <span className="errors-message">Price is required</span>
-                            )},
+                            )}
                             {errors.includes('Price must be a number') && (
                                 <span className="errors-message">Price must be a number</span>
                             )}
@@ -293,9 +293,9 @@ if (!sessionUser) return <Redirect to={'/'}/>
                         placeholder="Preview Image URL"
                         required
                         />
-                        {errors.includes('Preview image is required') && (
+                        {/* {errors.includes('Preview image is required') && (
                             <span className="errors-message">Preview image is required</span>
-                        )}
+                        )} */}
                         <input
                         className="img-input"
                         type='url'

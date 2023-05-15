@@ -146,6 +146,13 @@ body {
     align-items: center;
 }
 
+.star-emblem {
+    /* border: 1px solid red; */
+    margin-top: 13px;
+    
+
+}
+
 .reserve-button {
     background-color: #ff5a5f;
     color: #fff;
