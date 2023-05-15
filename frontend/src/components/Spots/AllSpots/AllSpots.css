@@ -80,3 +80,19 @@
 .spot-price {
   font-weight: bold;
 }
+
+@media screen and (max-width: 1550px){
+  .allSpots-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* border: 1px solid red; */
+  }
+}
+
+@media screen and (max-width: 1150px){
+  .allSpots-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* border: 1px solid red; */
+  }
+}
