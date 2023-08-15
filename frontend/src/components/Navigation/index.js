@@ -6,7 +6,7 @@ import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import CreateSpotForm from "../Spots/CreateSpot";
-import {ReactComponent as Logo} from '../Navigation/images/logo.svg'
+import Logo from '../Navigation/images/staybnc3.png'
 // import CreateSpotModal from "../Spots/CreateSpot/CreateSpotModal";
 // import LoginFormPage from "../LoginFormPage";
 // import SignupFormPage from "../SignupFormPage";
@@ -50,7 +50,8 @@ function Navigation({ isLoaded }) {
         <ul className="navigation-bar-container">
             <ui>
                 <NavLink exact to='/'>
-                  <Logo className='logo' alt='logo'></Logo>
+                  <img src={Logo} className='logo' alt='logo'></img>
+                  {/* <Logo className='logo' alt='logo'></Logo> */}
                   </NavLink>
             </ui>
             {sessionUser ? (
