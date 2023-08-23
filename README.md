@@ -1,4 +1,4 @@
-# `AirBnB Project`
+# `StayBnC Project`
 
 ## Database Schema Design
 
