@@ -6,7 +6,7 @@ import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import CreateSpotForm from "../Spots/CreateSpot";
-import Logo from '../Navigation/images/staybnc3.png'
+import Logo from '../Navigation/images/bnc4.png'
 // import CreateSpotModal from "../Spots/CreateSpot/CreateSpotModal";
 // import LoginFormPage from "../LoginFormPage";
 // import SignupFormPage from "../SignupFormPage";
