@@ -55,3 +55,8 @@
 .signup-form-button:hover {
     background-color: #ff3b40;
 }
+
+.signup-form-button:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+}

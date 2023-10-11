@@ -38,9 +38,10 @@ export default function SpotReviews ({ createNewReview }) {
     
       const handleDeleteConfirm = async () => {
         if (reviewToDelete) {
-          await dispatch(deleteReviewThunk(reviewToDelete))
-          await dispatch(getReviewsThunk(spotId))
-          setReviewToDelete(null)
+          await dispatch(deleteReviewThunk(reviewToDelete));
+          await dispatch(getReviewsThunk(spotId));
+          await dispatch(spotDetailThunk(spotId));
+          setReviewToDelete(null);
           spot.numReviews --
           
         }
@@ -69,7 +70,9 @@ export default function SpotReviews ({ createNewReview }) {
               {reviews.length > 0 && <span className='review-dot'></span>}
             </p>
             {reviews.length > 0 && (
-              <p className='reviews-total'>{spot.numReviews} Reviews </p>
+              <p className='reviews-total'>
+                {spot.numReviews} {spot.numReviews === 1 ? 'Review' : 'Reviews'}
+                </p>
             )}
           </div>
           {sessionUser &&

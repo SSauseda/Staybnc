@@ -282,65 +282,65 @@ if (!sessionUser) return <Redirect to={'/'}/>
                         </div>
                     </div>
                     <hr />
-                    <div className="photo-section">
-                        <h2 className="form-heading">Liven up your spot with photos</h2>
-                        <p className="form-subheading">Submit a link to at least one photo to publish your spot.</p>
-                        <input 
+                    {/* <div className="photo-section"> */}
+                        {/* <h2 className="form-heading">Liven up your spot with photos</h2> */}
+                        {/* <p className="form-subheading">Submit a link to at least one photo to publish your spot.</p> */}
+                        {/* <input 
                         className="image-input"
                         type="url"
                         value={imageURL}
                         onChange={e => setImageURL(e.target.value)}
                         placeholder="Preview Image URL"
                         required
-                        />
+                        /> */}
                         {/* {errors.includes('Preview image is required') && (
                             <span className="errors-message">Preview image is required</span>
                         )} */}
-                        <input
+                        {/* <input
                         className="img-input"
                         type='url'
                         value={prevImage1}
                         onChange={e => setPrevImage1(e.target.value)}
                         placeholder="Image URL"
                         required
-                        />
+                        /> */}
                         {/* {errors.includes('invalid image1') && (
                             <span className="errors-message">Image URL must end in .pgn, .jpg, or .jpeg</span>
                         )} */}
-                        <input
+                        {/* <input
                         className="img-input"
                         type='url'
                         value={prevImage2}
                         onChange={e => setPrevImage2(e.target.value)}
                         placeholder="Image URL"
                         required
-                        />
+                        /> */}
                         {/* {errors.includes('invalid image2') && (
                             <span className="errors-message">Image URL must end in .pgn, .jpg, or .jpeg</span>
                         )} */}
-                        <input
+                        {/* <input
                         className="img-input"
                         type='url'
                         value={prevImage3}
                         onChange={e => setPrevImage3(e.target.value)}
                         placeholder="Image URL"
                         required
-                        />
+                        /> */}
                         {/* {errors.includes('invalid image3') && (
                             <span className="errors-message">Image URL must end in .pgn, .jpg, or .jpeg</span>
                         )} */}
-                        <input
+                        {/* <input
                         className="img-input"
                         type='url'
                         value={prevImage4}
                         onChange={e => setPrevImage4(e.target.value)}
                         placeholder="Image URL"
                         required
-                        />
+                        /> */}
                         {/* {errors.includes('invalid image4') && (
                             <span className="errors-message">Image URL must end in .pgn, .jpg, or .jpeg</span>
                         )} */}
-                    </div>
+                    {/* </div> */}
                     <button className="submit-create-spot-button" type="submit" onClick={handleSubmit}>Update Spot</button>
                 </form>
             </div>

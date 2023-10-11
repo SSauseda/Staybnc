@@ -276,7 +276,7 @@ export default function CreateSpotForm() {
                                 <p>$</p>
                                 <input
                                 className="price-input"
-                                type="text"
+                                type="number"
                                 value={price}
                                 onChange={e => setPrice(e.target.value)}
                                 placeholder="Price per night (USD)"
@@ -313,6 +313,8 @@ export default function CreateSpotForm() {
                             placeholder="Image URL"
                             // required
                             />
+                            {/* {prevImage1 && <img src={prevImage1} alt="Preview 1" className="image-preview" />} */}
+
 
                             <input
                             className="img-input"
@@ -322,6 +324,7 @@ export default function CreateSpotForm() {
                             placeholder="Image URL"
                             // required
                             />
+                            {/* {prevImage2 && <img src={prevImage2} alt="Preview 2" className="image-preview" />} */}
 
                             <input
                             className="img-input"
@@ -331,6 +334,7 @@ export default function CreateSpotForm() {
                             placeholder="Image URL"
                             // required
                             />
+                            {/* {prevImage2 && <img src={prevImage3} alt="Preview 3" className="image-preview" />} */}
 
                             <input
                             className="img-input"
@@ -340,6 +344,7 @@ export default function CreateSpotForm() {
                             placeholder="Image URL"
                             // required
                             />
+                            {/* {prevImage2 && <img src={prevImage4} alt="Preview 4" className="image-preview" />} */}
 
                         </div>
                         <button className="submit-create-spot-button" type="submit" onClick={handleSubmit}>Create Spot</button>
