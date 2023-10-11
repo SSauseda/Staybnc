@@ -68,7 +68,7 @@ function Navigation({ isLoaded }) {
                 <button className="login-to-create-spot-nav">
                   <OpenModalMenuItem
                     className="bnbButton"
-                    itemText="Log In to Create a New Spot"
+                    itemText="Log in to create a new spot"
                     modalComponent={<LoginFormModal />}
                   />
                 </button>

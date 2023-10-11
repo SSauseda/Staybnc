@@ -92,6 +92,7 @@ const SignupFormModal = () => {
             onChange={(e) => {setEmail(e.target.value) 
             validateForm();}}
             required
+            placeholder='Email'
           />
 
         <label>
@@ -104,6 +105,7 @@ const SignupFormModal = () => {
             onChange={(e) => {setUsername(e.target.value)
             validateForm()}}
             required
+            placeholder='Username must be at least 4 characters'
           />
 
         <label>
@@ -116,6 +118,7 @@ const SignupFormModal = () => {
             onChange={(e) => {setFirstName(e.target.value)
             validateForm()}}
             required
+            placeholder='First Name'
           />
 
         <label>
@@ -128,6 +131,7 @@ const SignupFormModal = () => {
             onChange={(e) => {setLastName(e.target.value)
             validateForm()}}
             required
+            placeholder='Last Name'
           />
 
         <label>
@@ -140,6 +144,7 @@ const SignupFormModal = () => {
             onChange={(e) => {setPassword(e.target.value)
             validateForm()}}
             required
+            placeholder='Password must be at least 6 characters'
           />
 
         <label>
@@ -152,6 +157,7 @@ const SignupFormModal = () => {
             onChange={(e) => {setConfirmPassword(e.target.value)
             validateForm()}}
             required
+            placeholder='Confirm Password'
           />
 
         </div>

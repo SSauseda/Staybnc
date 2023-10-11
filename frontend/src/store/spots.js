@@ -75,7 +75,7 @@ export const deleteSpotThunk = (deleteSpotId) => async dispatch => {
     }
 };
 
-export const createSpotThunk = (newSpot, previewImage) => async dispatch => {
+export const createSpotThunk = (newSpot, previewImage, additionalImages) => async dispatch => {
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
@@ -95,6 +95,21 @@ export const createSpotThunk = (newSpot, previewImage) => async dispatch => {
         if (imageResponse.ok) {
             const image = await imageResponse.json();
             createdSpot.previewImage = image.url;
+            for (let img of additionalImages) {
+                const additionalImageResponse = await csrfFetch(`/api/spots/${createdSpot.id}/images`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        url: img.url,
+                        preview: false,
+                    })
+                })
+                if (additionalImageResponse.ok) {
+                    console.error("Failed to save additional image", img.url)
+                    // const additionalImage = await additionalImageResponse.json();
+                    // createdSpot.additionalImages.push(additionalImage.url);
+                }
+            }
             dispatch(createSpot(createdSpot));
             return createdSpot;
         }
