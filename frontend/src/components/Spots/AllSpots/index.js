@@ -7,7 +7,7 @@ import "./AllSpots.css";
 export default function AllSpots() {
   const spots = useSelector(state => state.spot.spots)
   // const spots = useSelector((state) => state.spot.allSpots);
-  // console.log("TESTTESTTEST SPOTS", typeof spots)
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -18,7 +18,7 @@ export default function AllSpots() {
   
   if (!spots) return null;
   const allOfSpots = Object.values(spots);
-  console.log("TESTTESTTEST", allOfSpots)
+
 
   const clickHandler = (spotId) => {
     history.push(`/spots/${spotId}`);

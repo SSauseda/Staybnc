@@ -12,7 +12,6 @@ import './SpotReviews.css'
 
 export default function SpotReviews ({ createNewReview }) {
     const reviews = useSelector(state => state.review.allReviews)
-    // console.log("TESTREVIEWSTESTREVIEWSTESTREVIEWSTESTREVIEWS" ,reviews)
     const spot = useSelector(state => state.spot.spotDetails)
     const { spotId } = useParams(); 
     const sessionUser = useSelector(state => state.session.user)
@@ -48,7 +47,6 @@ export default function SpotReviews ({ createNewReview }) {
         setDeleteModalOpen(false)
       }
 
-      // console.log("TESTTESTTEST", typeof spot.numReviews)
     
       const handleDeleteCancel = () => {
         setReviewToDelete(null)
@@ -96,7 +94,6 @@ export default function SpotReviews ({ createNewReview }) {
           {reviews.length > 0 ? (
             <ul className='reviews-container'>
               {reviews.map(review => {
-              // console.log("REVIEWS", reviews)
                 const date = new Date(review.updatedAt).toLocaleDateString(
                   'en-US',
                   {

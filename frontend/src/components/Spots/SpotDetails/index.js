@@ -20,7 +20,6 @@ export default function SpotDetails() {
     // const sessionUser = useSelector((state) => state.session.user);
 
     const spot = useSelector((state) => state.spot.spotDetails);
-    // console.log("SPOTPSOTPSOT", spot)
 
     useEffect(() => {
         dispatch(spotDetailThunk(spotId))
@@ -46,7 +45,6 @@ export default function SpotDetails() {
 
                 if (data && data.errors) {
                  errors = data.errors
-                //  console.log("errorserrors", errors)
                 }
             }
         )
@@ -61,7 +59,6 @@ export default function SpotDetails() {
 
     const spotImg = spot.SpotImages.find(img => img.preview);
     const otherImg = spot.SpotImages.filter(img => !img.preview)
-    // console.log("STPOSTPOIAMGEIAMGE",otherImg)
 
 
 

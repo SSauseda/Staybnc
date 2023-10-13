@@ -84,7 +84,6 @@ export default function EditSpotForm() {
         // }
 
         setErrors(errorsArray);
-        console.log("ERRORS", typeof errors)
 
         if (errorsArray.length === 0) {
             dispatch(

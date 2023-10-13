@@ -17,7 +17,6 @@ function ProfileButton({ user }) {
 
     const sessionUser = useSelector(state => state.session.user);
     const spots = useSelector((state) => state.spot.spots)
-    // console.log("TESTTESTTESTSPOTSSPOTSSPOTS", spots)
 
     const openMenu = () => {
         if (showMenu) return;

@@ -38,7 +38,6 @@ router.get('/current', requireAuth, async (req, res) => {
 //add an iamge to a reivew based on the review's id
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const reviewId = req.params.reviewId
-    console.log(reviewId)
     const review = await Review.findByPk(reviewId)
     const { url } = req.body
 
@@ -69,7 +68,6 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 //edit a review
 router.put('/:reviewId', requireAuth, editReviewValidationError, async (req, res) => {
     const reviewId = req.params.reviewId
-    // console.log(reviewId)
     const editReview = await Review.findByPk(reviewId)
     const { review, stars } = req.body
     if (!editReview){

@@ -81,7 +81,7 @@ export const createSpotThunk = (newSpot, previewImage, additionalImages) => asyn
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(newSpot),
     });
-// console.log("TEST", response)
+
     if (response.ok) {
         const createdSpot = await response.json();
         const imageResponse = await csrfFetch(`/api/spots/${createdSpot.id}/images`, {
