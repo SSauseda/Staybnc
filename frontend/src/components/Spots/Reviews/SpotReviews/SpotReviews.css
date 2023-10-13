@@ -1,16 +1,17 @@
 .reviews-header {
     display: flex;
     align-items: center;
-    font-size: 1.2em;
-    color: #484848;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    margin-left: 40px;
 }
 
 .stars-rating {
-    margin-right: 0.5em;
+    margin-right: 2px;
     font-size: 1.5em;
     display: flex;
     align-items: center;
-    color: red;
+    color: #ff5a5f;
 }
 
 .avg-rating {
@@ -34,11 +35,13 @@
     background-color: #ff5a5f;
     color: #fff;
     border: none;
+    border-radius: 4px;
     padding: 0.5em 2em;
     margin: 1em 0;
     cursor: pointer;
     font-size: 1em;
     transition: background-color 0.3s;
+    margin-left: 40px;
 }
 
 .post-review-btn:hover {
@@ -49,10 +52,20 @@
     list-style-type: none;
 }
 
-.review-container {
-    padding: 1em;
-    border-bottom: 1px solid #ebebeb;
 
+.review-container {
+    /* padding: 1em; */
+    border-bottom: 1px solid #ebebeb;
+    /* border: 2px solid red; */
+    width: 100%;
+    /* margin-right: 20px; */
+}
+
+.reviews-section {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: left;
 }
 
 .user-review-container {
@@ -80,16 +93,35 @@
 }
 
 .delete-review-btn {
-    background-color: transparent;
-    color: #ff5a5f;
+    background-color: #ff5a5f;
+    color: #FFF;
+    padding: 8px 12px;
     border: none;
-    padding: 0.5em 1em;
-    margin: 1em 0;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 0.8em;
-    transition: color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 10px;
+    display: block;
 }
 
 .delete-review-btn:hover {
-    color: #ff3b40;
+    background-color: #cc0000;
+}
+
+.owner-indicator {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 0;
+    margin-left: 40px;
+}
+
+
+.owner-message {
+    background-color: #37b750;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

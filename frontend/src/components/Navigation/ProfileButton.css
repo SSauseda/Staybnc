@@ -4,8 +4,8 @@
     flex-direction: column;
     text-align: center;
     border: 1px solid #5A5A5A;
-    top: 85px;
-    right: 45px;
+    top: 55px;
+    right: -3px;
     z-index: 1;
     background-color: #fff;
     border-radius: 5px;
@@ -18,18 +18,52 @@
     display: none;
 }
 
+.user-nav-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #484848;
+}
+
 .profile-dropdown li {
     font-size: 20px;
     width: 100%;
 }
 
 .manage-spots-btn-text {
-    font-size: 15px;
+    display: inline-block;
+    color: #007BFF;
+    padding: 2px 5px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+}
+
+.manage-spots-btn-text:hover {
+    background-color: #007BFF;
+    color: #FFF;
+}
+
+.manage-spots-btn-text:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .logIn button{
-    font-size: 15px;
-    width: 100%;
+    margin: 3px;
+    font-size: 18px;
+    width: 125%;
+    margin-left: -40px;
+    background-color: #5271ff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+
+.logIn button:hover {
+    background-color: #3f5bea;
+    cursor: pointer;
 }
 
 .profile-icon {
@@ -42,4 +76,27 @@
 
 li {
     list-style-type: none;
+}
+
+.logout-btn {
+    background-color: #ff4d4d;
+    color: #FFF;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.logout-btn:hover {
+    background-color: #FF3B40;
+    color: #FFFFFF;
+}
+
+.logout-btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 77, 77, 0.5);
 }

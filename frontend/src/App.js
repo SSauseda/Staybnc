@@ -10,6 +10,7 @@ import SpotDetails from './components/Spots/SpotDetails';
 import CreateSpotForm from './components/Spots/CreateSpot';
 import EditSpotForm from './components/Spots/UpdateSpot';
 import ManageSpots from './components/Spots/ManageSpots';
+import Footer from './components/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +48,9 @@ function App() {
       </Route>
 
       </Switch>}
+      <Footer>
+        <Footer isLoaded={ isLoaded }/>
+      </Footer>
     </>
   );
 }

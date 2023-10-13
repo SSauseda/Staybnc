@@ -63,14 +63,14 @@ function ProfileButton({ user }) {
         <ul className={ulClassName} ref={ulRef}>
             {user ? (
                 <>
-            <li>Hello, {user.firstName}</li>
+            <li className='user-nav-name'>Hello, {user.firstName}</li>
             {/* <li>{user.firstName} {user.lastName}</li> */}
-            <li>{user.email}</li>
+            <li className='user-nav-name'>{user.email}</li>
             <li>
             <Link to='/current' className='manage-spots-btn-text' onClick={closeMenu}>Manage Spots</Link>
             </li>
             <li>
-                <button onClick={logout}>Log Out</button>
+                <button className='logout-btn' onClick={logout}>Log Out</button>
             </li>
             </>
             ) : (

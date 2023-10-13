@@ -23,12 +23,12 @@ body {
     position: relative;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 2fr);
     grid-gap: 1em;
-    margin-top: 20px;
+    margin-top: 25px;
     width: 550px;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 19px;
 }
 
 .spot-details {
@@ -44,7 +44,7 @@ body {
 
 .other-images {
     width: 100%;
-    height: 250px;
+    height: 242px;
     object-fit: cover;
     border-radius: 4px;
 }
@@ -118,6 +118,14 @@ body {
     color: rgb(109, 107, 105);
 }
 
+.details-reservation-wrapper {
+    display: flex;
+    justify-content: space-between; /* Optional: To ensure there's space between the two containers */
+    width: 925px;
+    margin-left: 55px;
+}
+
+
 .reservation-container {
     width: 30%;
     display: flex;
@@ -125,19 +133,21 @@ body {
     align-items: center;
     border: 1px solid #dddddd;
     border-radius: 4px;
+    width: 200px;
 }
 
 .description-container {
-    width: auto;
     display: flex;
-    margin-bottom: 20px;
-    justify-content:space-between;
-    /* border: 1px solid red; */
+    /* justify-content: space-evenly; */
+    align-items: flex-start;
+    margin-top: 20px;
+    flex: 1;
 }
 
 .hosted-text {
     margin-top: 2em;
     font-size: 1.5em;
+    margin-left: 55px;
 }
 
 .spot-stars, .spot-stars-new {
@@ -157,6 +167,7 @@ body {
     background-color: #ff5a5f;
     color: #fff;
     border: none;
+    border-radius: 4px;
     font-size: 1em;
     padding: 0.5em 2em;
     margin-bottom: 2px;
@@ -165,4 +176,8 @@ body {
 
 .reserve-button:hover {
     background-color: #ff3b40;
+}
+
+.spot-reserve {
+    margin-bottom: 10px;
 }

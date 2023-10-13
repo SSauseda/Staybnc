@@ -60,7 +60,7 @@ export default function SpotReviews ({ createNewReview }) {
 
 
     return (
-        <div>
+        <div className="reviews-section">
           <div className='reviews-header'>
             <p className='stars-rating'>
               ★
@@ -74,20 +74,29 @@ export default function SpotReviews ({ createNewReview }) {
                 {spot.numReviews} {spot.numReviews === 1 ? 'Review' : 'Reviews'}
                 </p>
             )}
+            <div>
+            </div>
           </div>
           {sessionUser &&
-            sessionUser.id !== spot.Owner.id &&
-            !reviews.some(review => review.userId === sessionUser.id) && (
-              <div>
-                <button className='post-review-btn' onClick={createReviewClick}>
-                  Post Your Review
-                </button>
-              </div>
-            )}
+  sessionUser.id === spot.Owner.id ? (
+    <div className="owner-indicator">
+      <p className="owner-message">You own this spot</p>
+    </div>
+  ) : (
+    sessionUser &&
+    sessionUser.id !== spot.Owner.id &&
+    !reviews.some(review => review.userId === sessionUser.id) && (
+      <div>
+        <button className='post-review-btn' onClick={createReviewClick}>
+          Post Your Review
+        </button>
+      </div>
+    )
+)}
           {reviews.length > 0 ? (
             <ul className='reviews-container'>
               {reviews.map(review => {
-              console.log("REVIEWS", reviews)
+              // console.log("REVIEWS", reviews)
                 const date = new Date(review.updatedAt).toLocaleDateString(
                   'en-US',
                   {
@@ -95,7 +104,6 @@ export default function SpotReviews ({ createNewReview }) {
                     year: 'numeric'
                   }
                 )
-    
                 return (
                   <div className='review-container'>
                     <div className='user-review-container' key={review.id}>

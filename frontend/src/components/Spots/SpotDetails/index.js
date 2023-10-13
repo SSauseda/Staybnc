@@ -98,10 +98,12 @@ export default function SpotDetails() {
             <h2 className="hosted-text">
                 Hosted by {spot.Owner.firstName} {spot.Owner.lastName}
             </h2>
+            <div className="details-reservation-wrapper">
             <div className="description-container">
                 <div className="spot-description">
                     {spot.description}
                 </div>
+            </div>
                 <div className="reservation-container">
                     <div className="spot-price-box">
                         <div className="spot-price-night">

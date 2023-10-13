@@ -47,39 +47,30 @@ function Navigation({ isLoaded }) {
     // }
 
     return (
-        <ul className="navigation-bar-container">
-            <ui>
-                <NavLink exact to='/'>
-                  <img src={Logo} className='logo' alt='logo'></img>
-                  {/* <Logo className='logo' alt='logo'></Logo> */}
-                  </NavLink>
-            </ui>
-            {sessionUser ? (
-              <button className="create-spot-nav">
-                  <NavLink style={{ textDecoration: 'none', color: '#fff'}} exact to='/spots/new'>
-                    Create a New Spot
+      <ul className="navigation-bar-container">
+      <li>
+          <NavLink exact to='/'>
+            <img src={Logo} className='logo' alt='logo'></img>
+          </NavLink>
+      </li>
+      {sessionUser && (
+        <li>
+          <button className="create-spot-nav">
+              <NavLink style={{ textDecoration: 'none', color: '#fff'}} exact to='/spots/new'>
+                Create a New Spot
                 <OpenModalMenuItem
                   modalComponent={<CreateSpotForm />}
-                  /> 
-                  </NavLink>
-              </button>
-            ) : (
-              <div>
-                <button className="login-to-create-spot-nav">
-                  <OpenModalMenuItem
-                    className="bnbButton"
-                    itemText="Log in to create a new spot"
-                    modalComponent={<LoginFormModal />}
-                  />
-                </button>
-              </div>
-            )}
-            {isLoaded && (
-                <ul className="profile-btn-position">
-                    <ProfileButton user={sessionUser} />
-                </ul>
-            )}
-        </ul>
+                /> 
+              </NavLink>
+          </button>
+        </li>
+      )}
+      {isLoaded && (
+          <li className="profile-btn-position">
+              <ProfileButton user={sessionUser} />
+          </li>
+      )}
+  </ul>
     );
 }
 
