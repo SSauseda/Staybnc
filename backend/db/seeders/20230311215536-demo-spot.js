@@ -31,7 +31,7 @@ module.exports = {
         lat: 41.8781,
         lng: 87.6298,
         name: 'City Vibes',
-        description: 'Great location for downtown fun',
+        description: 'Nestled in the bustling heart of Chicago, this property offers a unique blend of city life and cozy comfort. Step out and explore the vibrant streets or relax and soak in the urban vibes from the comfort of your room.',
         price: 400
       },
       {
@@ -43,7 +43,7 @@ module.exports = {
         lat: 25.7617,
         lng: 80.1918,
         name: 'Highrise beachfront',
-        description: 'Luxury home with beach views',
+        description: 'Elevate your vacation with this luxury beachfront residence in Miami. Wake up to the soothing sounds of waves and enjoy panoramic ocean views as you sip your morning coffee.',
         price: 500
       },
       {
@@ -115,7 +115,7 @@ module.exports = {
         lat: 25.7617,
         lng: 80.1918,
         name: 'Greenwood Cottage',
-        description: 'Bright and colorful cabin tucked in the towering pines of Oklahoma',
+        description: 'Find your oasis at the Greenwood Cottage in Oklahoma City. This bright and colorful cabin, nestled among towering pines, offers a serene retreat from the hustle and bustle of daily life.',
         price: 500
       },
       {
