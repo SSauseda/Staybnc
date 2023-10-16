@@ -23,7 +23,7 @@ const Footer = () => {
                   <a
                     target="_blank"
                     rel="noreferrer"
-                    href="https://github.com/SSauseda/endurotrak"
+                    href="https://github.com/SSauseda/Staybnc"
                   >
                     <i className="fab fa-github fa-2x"></i> Repo
                   </a>

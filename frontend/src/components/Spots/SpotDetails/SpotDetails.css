@@ -120,7 +120,7 @@ body {
 
 .details-reservation-wrapper {
     display: flex;
-    justify-content: space-between; /* Optional: To ensure there's space between the two containers */
+    justify-content: space-between;
     width: 925px;
     margin-left: 55px;
 }
