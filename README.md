@@ -1,5 +1,5 @@
 # `StayBnC: Your Next Destination Awaits 🌍`
-Staybnc is a full-stack web application inspired by the likes of Airbnb, designed to connect travlers with unique spots around the world. Whether you're looking for a cozy cabin in the woods or a luxurious penthouse in the city, StayBnC offers a diverse range of spots to cater to every travler's taste. 
+Staybnc is a full-stack web application inspired by the likes of Airbnb, designed to connect travelers with unique spots around the world. Whether you're looking for a cozy cabin in the woods or a luxurious penthouse in the city, StayBnC offers a diverse range of spots to cater to every travler's taste. 
 
 **Live Site:** [StayBnC](https://endurotrak.onrender.com](http://staybnc.onrender.com)http://staybnc.onrender.com)
 
@@ -14,7 +14,7 @@ Staybnc is a full-stack web application inspired by the likes of Airbnb, designe
   
 - **Review Management:** Share your experiences by creating reviews. If you change your mind, you can edit or delete them too.
   
-- **Spot Management:** Have a place you'd like to share with the world? Active users can list their own spots, and manage them with full edit and delete capabilities.
+- **Spot Management:** Have a place you'd like to share with the world? Active users can list their own spots and manage them with full edit and delete capabilities.
   
 - **Demo Mode:** Not sure yet? Use the demo button to log in and get a firsthand experience of what StayBnC has to offer.
 
